@@ -3,7 +3,11 @@ import TopUtilityBar from "@/components/TopUtilityBar";
 import MainHeader from "@/components/MainHeader";
 import MainNavigation from "@/components/MainNavigation";
 import Footer from "@/components/Footer";
-import AboutContent from "@/components/about/AboutContent";
+import AboutHero from "@/components/about/AboutHero";
+import LeadershipAuthority from "@/components/about/LeadershipAuthority";
+import AccreditationBanner from "@/components/about/AccreditationBanner";
+import QualityAssuranceGrid from "@/components/about/QualityAssuranceGrid";
+import LogisticsAndValue from "@/components/about/LogisticsAndValue";
 
 export const metadata: Metadata = {
     title: "About Us | i-TESTCHEM Laboratory Services",
@@ -21,7 +25,11 @@ export default function AboutPage() {
             </header>
 
             <main className="flex-grow">
-                <AboutContent />
+                <AboutHero />
+                <LeadershipAuthority />
+                <AccreditationBanner />
+                <QualityAssuranceGrid />
+                <LogisticsAndValue />
             </main>
 
             <Footer />

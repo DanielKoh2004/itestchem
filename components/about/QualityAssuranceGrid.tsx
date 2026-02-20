@@ -1,5 +1,22 @@
+"use client";
+
+import { motion } from "framer-motion";
+import type { Easing } from "framer-motion";
 import { ClipboardCheck, FlaskConical, TestTubes } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+const ease: Easing = [0.33, 1, 0.68, 1];
+const viewport = { once: true, margin: "-100px" as const };
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
+
+const stagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } },
+};
 
 interface QAColumn {
     icon: LucideIcon;
@@ -53,7 +70,13 @@ export default function QualityAssuranceGrid() {
         <section className="bg-background-legacy py-16 border-y border-slate-200">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 {/* Section header */}
-                <div className="text-center mb-12 max-w-2xl mx-auto">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewport}
+                    variants={fadeUp}
+                    className="text-center mb-12 max-w-2xl mx-auto"
+                >
                     <div className="flex items-center justify-center gap-3 mb-4">
                         <div className="h-px w-10 bg-borneo-green" />
                         <span className="text-[11px] text-borneo-green font-bold uppercase tracking-[0.2em]">
@@ -69,17 +92,23 @@ export default function QualityAssuranceGrid() {
                         assurance framework designed to ensure accuracy, precision, and
                         regulatory defensibility.
                     </p>
-                </div>
+                </motion.div>
 
-                {/* 3-column grid */}
-                <div className="grid md:grid-cols-3 gap-6">
-                    {qaColumns.map((col, index) => {
+                {/* 3-column grid — staggered reveal */}
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewport}
+                    variants={stagger}
+                    className="grid md:grid-cols-3 gap-6"
+                >
+                    {qaColumns.map((col) => {
                         const IconComponent = col.icon;
                         return (
-                            <div
+                            <motion.div
                                 key={col.title}
-                                className="bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300 animate-fade-in-up"
-                                style={{ animationDelay: `${index * 0.15}s` }}
+                                variants={fadeUp}
+                                className="bg-white border border-slate-200 shadow-sm hover:shadow-md transition-shadow duration-300"
                             >
                                 {/* Card header */}
                                 <div className="bg-borneo-green-dark p-5 text-white">
@@ -107,10 +136,10 @@ export default function QualityAssuranceGrid() {
                                         ))}
                                     </ul>
                                 </div>
-                            </div>
+                            </motion.div>
                         );
                     })}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

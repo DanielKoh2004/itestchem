@@ -1,12 +1,75 @@
+"use client";
+
+import { motion } from "framer-motion";
+import type { Easing } from "framer-motion";
 import { MapPin, BadgeDollarSign, Truck, Clock } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+
+const ease: Easing = [0.33, 1, 0.68, 1];
+const viewport = { once: true, margin: "-100px" as const };
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
+
+const stagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } },
+};
+
+interface LocationDetailProps {
+    icon: LucideIcon;
+    label: string;
+    text: string;
+}
+
+function LocationDetail({ icon: Icon, label, text }: LocationDetailProps) {
+    return (
+        <div className="flex items-start gap-3">
+            <Icon className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
+            <div>
+                <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-0.5">
+                    {label}
+                </p>
+                <p className="text-xs text-slate-300">{text}</p>
+            </div>
+        </div>
+    );
+}
+
+interface ValueCardProps {
+    icon: LucideIcon;
+    title: string;
+    text: string;
+}
+
+function ValueCard({ icon: Icon, title, text }: ValueCardProps) {
+    return (
+        <div className="flex items-start gap-3 bg-background-legacy border border-slate-200 p-4">
+            <Icon className="w-5 h-5 text-borneo-green shrink-0 mt-0.5" />
+            <div>
+                <p className="text-sm font-bold text-slate-800 mb-1">{title}</p>
+                <p className="text-[11px] text-slate-500 leading-relaxed">{text}</p>
+            </div>
+        </div>
+    );
+}
 
 export default function LogisticsAndValue() {
     return (
         <section className="bg-white py-16 border-b border-slate-200">
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                variants={stagger}
+                className="max-w-7xl mx-auto px-4 md:px-8"
+            >
                 <div className="grid lg:grid-cols-12 gap-12 items-start">
-                    {/* Left — Location map card */}
-                    <div className="lg:col-span-5 animate-fade-in-left">
+                    {/* Left — Location card + image */}
+                    <motion.div variants={fadeUp} className="lg:col-span-5">
                         <div className="bg-slate-navy text-white p-8 shadow-lg">
                             <div className="flex items-center gap-3 mb-5">
                                 <MapPin className="w-6 h-6 text-emerald-400" />
@@ -32,10 +95,14 @@ export default function LogisticsAndValue() {
                                 />
                             </div>
                         </div>
-                    </div>
+                        <ImagePlaceholder
+                            label="Kuching / Kota Samarahan Facility"
+                            className="w-full h-[300px] rounded-sm mt-8"
+                        />
+                    </motion.div>
 
                     {/* Right — Value commitment */}
-                    <div className="lg:col-span-7 animate-fade-in-right delay-200">
+                    <motion.div variants={fadeUp} className="lg:col-span-7">
                         <div className="flex items-center gap-3 mb-4">
                             <div className="h-px w-10 bg-borneo-green" />
                             <span className="text-[11px] text-borneo-green font-bold uppercase tracking-[0.2em]">
@@ -78,51 +145,9 @@ export default function LogisticsAndValue() {
                                 text="Kuching HQ and Kota Samarahan Technical Center locations"
                             />
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
-            </div>
+            </motion.div>
         </section>
-    );
-}
-
-function LocationDetail({
-    icon: Icon,
-    label,
-    text,
-}: {
-    icon: typeof Truck;
-    label: string;
-    text: string;
-}) {
-    return (
-        <div className="flex items-start gap-3">
-            <Icon className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-            <div>
-                <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-0.5">
-                    {label}
-                </p>
-                <p className="text-xs text-slate-300">{text}</p>
-            </div>
-        </div>
-    );
-}
-
-function ValueCard({
-    icon: Icon,
-    title,
-    text,
-}: {
-    icon: typeof BadgeDollarSign;
-    title: string;
-    text: string;
-}) {
-    return (
-        <div className="flex items-start gap-3 bg-background-legacy border border-slate-200 p-4">
-            <Icon className="w-5 h-5 text-borneo-green shrink-0 mt-0.5" />
-            <div>
-                <p className="text-sm font-bold text-slate-800 mb-1">{title}</p>
-                <p className="text-[11px] text-slate-500 leading-relaxed">{text}</p>
-            </div>
-        </div>
     );
 }
