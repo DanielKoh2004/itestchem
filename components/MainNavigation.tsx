@@ -21,7 +21,7 @@ const navItems: NavItem[] = [
         ],
     },
     { label: "Consulting", href: "#" },
-    { label: "Contact", href: "#" },
+    { label: "Contact", href: "/contact" },
     { label: "Careers", href: "#" },
 ];
 
@@ -30,14 +30,13 @@ export default function MainNavigation() {
         <nav className="bg-borneo-green text-white">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 <ul className="flex items-center gap-0 text-xs font-bold uppercase tracking-widest">
-                    {navItems.map((item, index) => (
+                    {navItems.map((item) => (
                         <li
                             key={item.label}
-                            className={`${item.dropdown ? "group relative" : "relative"} animate-fade-in-up`}
-                            style={{ animationDelay: `${index * 0.05}s` }}
+                            className={item.dropdown ? "group relative" : "relative"}
                         >
                             <a
-                                className={`block py-4 px-6 border-r border-emerald-900/30 flex items-center gap-2 transition-colors ${item.active
+                                className={`flex items-center gap-2 py-4 px-6 border-r border-emerald-900/30 transition-colors ${item.active
                                     ? "bg-borneo-green-dark"
                                     : "hover:bg-borneo-green-dark"
                                     }`}
@@ -68,3 +67,4 @@ export default function MainNavigation() {
         </nav>
     );
 }
+

@@ -1,7 +1,22 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { motion } from "framer-motion";
+import type { Easing } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+
+const ease: Easing = [0.33, 1, 0.68, 1];
+const viewport = { once: true, margin: "-100px" as const };
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
+
+const stagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } },
+};
 
 interface HeroSlide {
     imageUrl: string;
@@ -56,25 +71,37 @@ export default function HeroSection() {
             {/* Overlay */}
             <div className="absolute inset-0 bg-slate-900/30" />
 
-            {/* Content Card */}
+            {/* Content Card — framer-motion stagger */}
             <div className="relative max-w-7xl mx-auto h-full px-4 md:px-8 flex items-center">
-                <div className="max-w-2xl text-white p-10 bg-slate-navy/85 backdrop-blur-md border-l-8 border-borneo-green shadow-2xl animate-fade-in-left">
-                    <h2 className="text-5xl font-bold mb-5 leading-[1.1]">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={viewport}
+                    variants={stagger}
+                    className="max-w-2xl text-white p-10 bg-slate-navy/85 backdrop-blur-md border-l-8 border-borneo-green shadow-2xl"
+                >
+                    <motion.h2
+                        variants={fadeUp}
+                        className="text-5xl font-bold mb-5 leading-[1.1]"
+                    >
                         Your Professional &amp; Reliable Testing Solution
-                    </h2>
-                    <p className="text-lg text-slate-300 mb-8 font-light leading-relaxed border-l border-slate-500 pl-6 animate-fade-in-up delay-200">
+                    </motion.h2>
+                    <motion.p
+                        variants={fadeUp}
+                        className="text-lg text-slate-300 mb-8 font-light leading-relaxed border-l border-slate-500 pl-6"
+                    >
                         Providing accredited agricultural, environmental, and chemical
                         analysis since 2013.
-                    </p>
-                    <div className="flex gap-3 animate-fade-in-up delay-300">
+                    </motion.p>
+                    <motion.div variants={fadeUp} className="flex gap-3">
                         <button className="bg-borneo-green hover:bg-borneo-green-dark text-white px-8 py-3.5 font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-lg border border-emerald-700">
                             Corporate Profile
                         </button>
                         <button className="bg-transparent hover:bg-white/10 text-white px-8 py-3.5 font-bold text-xs uppercase tracking-[0.2em] transition-all border border-white/30">
                             Our Scopes
                         </button>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
             </div>
 
             {/* Navigation Arrows */}

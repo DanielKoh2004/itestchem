@@ -1,5 +1,22 @@
+"use client";
+
+import { motion } from "framer-motion";
+import type { Easing } from "framer-motion";
 import { Leaf, Droplets, Utensils, BookOpenCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+
+const ease: Easing = [0.33, 1, 0.68, 1];
+const viewport = { once: true, margin: "-100px" as const };
+
+const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease } },
+};
+
+const stagger = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.15 } },
+};
 
 interface ServiceBullet {
     text: string;
@@ -59,18 +76,12 @@ const services: ServiceCardData[] = [
     },
 ];
 
-function ServiceCard({
-    service,
-    index,
-}: {
-    service: ServiceCardData;
-    index: number;
-}) {
+function ServiceCard({ service }: { service: ServiceCardData }) {
     const IconComponent = service.icon;
     return (
-        <div
-            className="bg-white border border-slate-200 p-5 rounded-sm shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all duration-300 hover:-translate-y-0.5 group animate-fade-in-up"
-            style={{ animationDelay: `${0.1 + index * 0.1}s` }}
+        <motion.div
+            variants={fadeUp}
+            className="bg-white border border-slate-200 p-5 rounded-sm shadow-sm hover:shadow-lg hover:border-emerald-200 transition-all duration-300 hover:-translate-y-0.5 group"
         >
             <div className="flex items-start gap-4">
                 <div className="p-2 bg-emerald-50 rounded-sm group-hover:bg-borneo-green transition-colors duration-300">
@@ -93,14 +104,20 @@ function ServiceCard({
                     </ul>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 }
 
 export default function ServicesGrid() {
     return (
         <div>
-            <div className="mb-6 border-b-2 border-borneo-green pb-3 flex justify-between items-end">
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                variants={fadeUp}
+                className="mb-6 border-b-2 border-borneo-green pb-3 flex justify-between items-end"
+            >
                 <h3 className="text-3xl font-bold text-slate-800">
                     Core Analytical Scopes
                 </h3>
@@ -110,12 +127,18 @@ export default function ServicesGrid() {
                 >
                     Download Service Catalogue
                 </a>
-            </div>
-            <div className="grid md:grid-cols-2 gap-4">
-                {services.map((service, index) => (
-                    <ServiceCard key={service.title} service={service} index={index} />
+            </motion.div>
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewport}
+                variants={stagger}
+                className="grid md:grid-cols-2 gap-4"
+            >
+                {services.map((service) => (
+                    <ServiceCard key={service.title} service={service} />
                 ))}
-            </div>
+            </motion.div>
         </div>
     );
 }
