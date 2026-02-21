@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, AlertTriangle, FlaskConical, Leaf, Mountain } from "lucide-react";
+import { CheckCircle2, FlaskConical, Leaf, Mountain } from "lucide-react";
 import TopUtilityBar from "@/components/TopUtilityBar";
 import MainHeader from "@/components/MainHeader";
 import MainNavigation from "@/components/MainNavigation";
@@ -32,7 +32,7 @@ const sections: TestSection[] = [
             "Total N (Unknown sources of N)",
             "Total Phosphorus",
             "Citric Acid Soluble Phosphorus",
-            "*Water Soluble Phosphorus",
+            "Water Soluble Phosphorus",
             "Total Potassium",
             "Total Magnesium",
             "Water Soluble Magnesium",
@@ -42,8 +42,8 @@ const sections: TestSection[] = [
             "Total Calcium",
             "Total Copper",
             "Total Zinc",
-            "*pH",
-            "*Any other analysis",
+            "pH",
+            "Any other analysis",
         ],
     },
     {
@@ -61,21 +61,21 @@ const sections: TestSection[] = [
         title: "Soil",
         icon: <Mountain className="w-5 h-5 text-borneo-green" />,
         parameters: [
-            "pH / *Conductivity",
-            "*Salinity (Convert from Conductivity)",
+            "pH / Conductivity",
+            "Salinity (Convert from Conductivity)",
             "Package price: pH, Nitrogen, Organic Carbon, Total P, Available P, Exchangeable K, Mg, Ca, CEC",
             "Nitrogen",
             "Organic Carbon",
             "Total Phosphorus",
             "Available Phosphorus",
             "Exchangeable K, Mg, Ca",
-            "*Exchangeable Al",
-            "*Exchangeable Na",
+            "Exchangeable Al",
+            "Exchangeable Na",
             "Cation Exchangeable Capacity (CEC)",
             "Particle Size Analysis",
-            "*Available Cu / Available Zn",
-            "*Boron",
-            "*Other analysis",
+            "Available Cu / Available Zn",
+            "Boron",
+            "Other analysis",
         ],
     },
 ];
@@ -134,16 +134,7 @@ export default function AgriculturalPage() {
                                         className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed"
                                     >
                                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0" />
-                                        <span>
-                                            {param.startsWith("*") ? (
-                                                <>
-                                                    <span className="text-amber-600 font-semibold">*</span>
-                                                    {param.slice(1)}
-                                                </>
-                                            ) : (
-                                                param
-                                            )}
-                                        </span>
+                                        <span>{param}</span>
                                     </li>
                                 ))}
                             </ul>
@@ -151,17 +142,7 @@ export default function AgriculturalPage() {
                     ))}
                 </div>
 
-                {/* Warning Box */}
-                <div className="mt-12 bg-amber-50 border border-amber-200 p-6 flex flex-col sm:flex-row items-start gap-4">
-                    <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <div>
-                        <p className="text-xs text-amber-800 leading-relaxed">
-                            Parameters marked with{" "}
-                            <span className="font-bold text-amber-600">(*)</span>{" "}
-                            denotes Not Accredited parameters.
-                        </p>
-                    </div>
-                </div>
+
 
                 <div className="mt-10 flex justify-center">
                     <Link

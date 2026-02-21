@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { CheckCircle2, AlertTriangle, Droplets } from "lucide-react";
+import { CheckCircle2, Droplets } from "lucide-react";
 import TopUtilityBar from "@/components/TopUtilityBar";
 import MainHeader from "@/components/MainHeader";
 import MainNavigation from "@/components/MainNavigation";
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 const parameters: string[] = [
     "pH",
     "BOD5 @ 20°C",
-    "*BOD3 @ 30°C",
+    "BOD3 @ 30°C",
     "COD",
     "Phosphorus",
     "Ammoniacal Nitrogen",
@@ -26,14 +26,14 @@ const parameters: string[] = [
     "Total Dissolved Solids",
     "Oil and Grease",
     "Chloride",
-    "*Potassium",
-    "*Total Hardness",
-    "*Alkalinity",
-    "*Copper",
-    "*Zinc",
-    "*Iron",
-    "*Manganese",
-    "*Any other analysis",
+    "Potassium",
+    "Total Hardness",
+    "Alkalinity",
+    "Copper",
+    "Zinc",
+    "Iron",
+    "Manganese",
+    "Any other analysis",
 ];
 
 /* ───────── page ───────── */
@@ -87,40 +87,24 @@ export default function EnvironmentalPage() {
                                     className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed py-1"
                                 >
                                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 mt-0.5 shrink-0" />
-                                    <span>
-                                        {param.startsWith("*") ? (
-                                            <>
-                                                <span className="text-amber-600 font-semibold">*</span>
-                                                {param.slice(1)}
-                                            </>
-                                        ) : (
-                                            param
-                                        )}
-                                    </span>
+                                    <span>{param}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
                 </div>
 
-                {/* Warning Box */}
-                <div className="mt-12 bg-amber-50 border border-amber-200 p-6 flex flex-col sm:flex-row items-start gap-4">
-                    <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <div>
-                        <p className="text-xs text-amber-800 leading-relaxed">
-                            Parameters marked with{" "}
-                            <span className="font-bold text-amber-600">(*)</span>{" "}
-                            denotes Not Accredited parameters.
-                        </p>
-                        <Link
-                            href="/contact"
-                            className="inline-block mt-3 px-5 py-2 bg-borneo-green hover:bg-borneo-green-dark text-white text-[11px] font-bold uppercase tracking-widest transition-colors"
-                        >
-                            Request Official Quotation
-                        </Link>
-                    </div>
+
+
+                <div className="mt-10 flex justify-center">
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 bg-slate-navy hover:bg-black text-white px-8 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow-lg transition-all"
+                    >
+                        Request Official Quotation
+                    </Link>
                 </div>
-            </section>
+            </section >
             <Footer />
         </>
     );

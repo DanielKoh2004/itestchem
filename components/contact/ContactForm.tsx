@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Send, CheckCircle2 } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { submitContactForm } from "@/app/actions/contact";
 
 const inquiryOptions = [
     "Request a Quote",
@@ -35,6 +37,8 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export default function ContactForm() {
     const [isSuccess, setIsSuccess] = useState(false);
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     const {
         register,
@@ -46,12 +50,22 @@ export default function ContactForm() {
     });
 
     const onSubmit = async (data: ContactFormData) => {
-        // Simulate 1.5s network request
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        console.log("Contact form submitted:", data);
-        setIsSuccess(true);
-        reset();
-        setTimeout(() => setIsSuccess(false), 5000);
+        setSubmitError(null);
+        if (!turnstileToken) {
+            setSubmitError("Please complete the CAPTCHA to verify you are human.");
+            return;
+        }
+
+        const response = await submitContactForm(data, turnstileToken);
+
+        if (response.error) {
+            setSubmitError(response.error);
+        } else if (response.success) {
+            setIsSuccess(true);
+            reset();
+            setTurnstileToken(null);
+            setTimeout(() => setIsSuccess(false), 15000);
+        }
     };
 
     return (
@@ -73,18 +87,6 @@ export default function ContactForm() {
 
             {/* Form body */}
             <div className="flex-1 px-8 py-8 overflow-y-auto">
-                {isSuccess && (
-                    <div className="mb-6 flex items-center gap-3 bg-emerald-50 border border-emerald-200 text-emerald-800 px-5 py-4 text-sm font-medium">
-                        <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
-                        <div>
-                            <p className="font-bold">Message sent successfully.</p>
-                            <p className="text-xs text-emerald-600 mt-0.5">
-                                Our team will get back to you within 1 business day.
-                            </p>
-                        </div>
-                    </div>
-                )}
-
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     {/* Full Name */}
                     <div>
@@ -198,6 +200,30 @@ export default function ContactForm() {
                             <p className="text-xs text-red-500 mt-1">{errors.message.message}</p>
                         )}
                     </div>
+
+                    {submitError && (
+                        <div className="text-xs text-red-500 font-bold border-l-2 border-red-500 pl-3">
+                            {submitError}
+                        </div>
+                    )}
+
+                    {isSuccess && (
+                        <div className="flex items-center gap-3 bg-emerald-50 border border-emerald-200 text-emerald-800 px-5 py-4 text-sm font-medium">
+                            <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0" />
+                            <div>
+                                <p className="font-bold">Message sent successfully.</p>
+                                <p className="text-xs text-emerald-600 mt-0.5">
+                                    Our team will get back to you within 1 business day.
+                                </p>
+                            </div>
+                        </div>
+                    )}
+
+                    <Turnstile
+                        siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                        onSuccess={(token: string) => setTurnstileToken(token)}
+                        onError={() => setTurnstileToken(null)}
+                    />
 
                     {/* Submit */}
                     <button
