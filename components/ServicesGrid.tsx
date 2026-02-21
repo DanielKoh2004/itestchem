@@ -65,7 +65,7 @@ const services: ServiceCardData[] = [
     },
     {
         icon: BookOpenCheck,
-        title: "Consulting Services",
+        title: "Consultation Services",
         description:
             "MS ISO/IEC 17025 accreditation consulting and internal auditing for laboratories.",
         bullets: [
@@ -121,12 +121,7 @@ export default function ServicesGrid() {
                 <h3 className="text-3xl font-bold text-slate-800">
                     Core Analytical Scopes
                 </h3>
-                <a
-                    className="text-xs font-bold text-borneo-green uppercase tracking-wider hover:underline"
-                    href="#"
-                >
-                    Download Service Catalogue
-                </a>
+
             </motion.div>
             <motion.div
                 initial="hidden"

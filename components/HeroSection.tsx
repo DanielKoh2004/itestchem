@@ -84,7 +84,7 @@ export default function HeroSection() {
                         variants={fadeUp}
                         className="text-5xl font-bold mb-5 leading-[1.1]"
                     >
-                        Your Professional &amp; Reliable Testing Solution
+                        Your Professional &amp; Reliable Analytical Testing Solution
                     </motion.h2>
                     <motion.p
                         variants={fadeUp}
@@ -93,14 +93,7 @@ export default function HeroSection() {
                         Providing accredited agricultural, environmental, and chemical
                         analysis since 2013.
                     </motion.p>
-                    <motion.div variants={fadeUp} className="flex gap-3">
-                        <button className="bg-borneo-green hover:bg-borneo-green-dark text-white px-8 py-3.5 font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-lg border border-emerald-700">
-                            Corporate Profile
-                        </button>
-                        <button className="bg-transparent hover:bg-white/10 text-white px-8 py-3.5 font-bold text-xs uppercase tracking-[0.2em] transition-all border border-white/30">
-                            Our Scopes
-                        </button>
-                    </motion.div>
+
                 </motion.div>
             </div>
 

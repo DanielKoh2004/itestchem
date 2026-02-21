@@ -1,4 +1,4 @@
-interface NewsItem {
+﻿interface NewsItem {
     date: string;
     title: string;
     excerpt: string;
@@ -18,7 +18,7 @@ const newsItems: NewsItem[] = [
         date: "Oct 24, 2023",
         title: "ISO/IEC 17025:2017 Audit Successfully Completed",
         excerpt:
-            "i-TESTCHEM continues to uphold the highest standards of lab quality management.",
+            "iTestchem continues to uphold the highest standards of lab quality management.",
         imageUrl:
             "https://lh3.googleusercontent.com/aida-public/AB6AXuDhyDUNJi6dogTMqt9lCtkH7dupqWbB85DV4g84-0rvHovbrrwjfRdgkyloTjseuAc4ezzTuWyZhX3AJQRxWUtq4_ddI7Uwq2Vawj-lLBet-ZzPVWuevx8sg6tCdrgscAJt3ejtiE31Wu4pTiAks0bxwnrvo0JVktGciD3At8vftbTZAYJ3GsmiiO__6oSaygX1ALRWsBwv6s_-Wc7pesOGieiqv99y_byCt9KkmUjrauzZXShRlUeMb6RJ0d9Uw0jXLsI00Yalnhin",
     },
@@ -37,7 +37,7 @@ export default function TechnicalUpdates() {
         <div className="bg-white border border-slate-200 rounded-sm overflow-hidden animate-fade-in-right delay-100">
             <div className="bg-slate-50 px-5 py-3 border-b-2 border-borneo-green">
                 <h3 className="text-lg font-bold text-slate-800 uppercase tracking-tight">
-                    Technical Updates
+                    Latest News
                 </h3>
             </div>
             <div className="divide-y divide-slate-100">
@@ -71,7 +71,7 @@ export default function TechnicalUpdates() {
             </div>
             <div className="bg-slate-50 p-3 text-center border-t border-slate-200">
                 <button className="text-[10px] font-bold text-slate-500 uppercase tracking-widest hover:text-borneo-green transition-colors">
-                    View All Updates
+                    View All News
                 </button>
             </div>
         </div>

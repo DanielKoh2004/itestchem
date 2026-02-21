@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useMemo } from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
@@ -18,11 +18,10 @@ const slideInRight = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease, delay: 0.15 } },
 };
 
-const mapCenter = { lat: 1.506, lng: 110.411 };
+const mapCenter = { lat: 1.553, lng: 110.359 };
 
 const markers = [
-    { position: { lat: 1.553, lng: 110.359 }, title: "Kuching HQ" },
-    { position: { lat: 1.458, lng: 110.463 }, title: "Kota Samarahan Technical Center" },
+    { position: { lat: 1.553, lng: 110.359 }, title: "iTestchem Laboratory Sdn Bhd" },
 ];
 
 const darkModeStyles: google.maps.MapTypeStyle[] = [
@@ -107,7 +106,7 @@ export default function InteractiveMapDirectory() {
                 <GoogleMap
                     mapContainerClassName="w-full h-full absolute inset-0"
                     center={mapCenter}
-                    zoom={11}
+                    zoom={14}
                     options={mapOptions}
                 >
                     {markers.map((m) => (
@@ -140,7 +139,7 @@ export default function InteractiveMapDirectory() {
                             <MapPin className="w-4 h-4 text-white" />
                         </div>
                         <div>
-                            <h3 className="text-sm font-bold">Kuching HQ</h3>
+                            <h3 className="text-sm font-bold">iTestchem Laboratory</h3>
                             <p className="text-[10px] text-emerald-400 uppercase tracking-wider font-bold">
                                 Headquarters
                             </p>
@@ -168,38 +167,6 @@ export default function InteractiveMapDirectory() {
                     </div>
                 </motion.div>
 
-                {/* Kota Samarahan Card */}
-                <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={slideInRight}
-                    className="pointer-events-auto bg-slate-900/85 backdrop-blur-md text-white border border-slate-700 p-5 max-w-sm self-end shadow-2xl"
-                >
-                    <div className="flex items-center gap-2 mb-3">
-                        <div className="w-8 h-8 bg-emerald-700 flex items-center justify-center">
-                            <MapPin className="w-4 h-4 text-white" />
-                        </div>
-                        <div>
-                            <h3 className="text-sm font-bold">Kota Samarahan</h3>
-                            <p className="text-[10px] text-emerald-400 uppercase tracking-wider font-bold">
-                                Technical Center
-                            </p>
-                        </div>
-                    </div>
-                    <address className="not-italic text-xs text-slate-300 leading-relaxed mb-3 border-l-2 border-emerald-700 pl-3">
-                        Unit 12-14, Block A<br />
-                        Samarahan Industrial Park<br />
-                        94300 Kota Samarahan<br />
-                        Sarawak, Malaysia
-                    </address>
-                    <div className="space-y-1.5">
-                        <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                            <Clock className="w-3.5 h-3.5 text-emerald-400" />
-                            <span>Mon – Fri, 8:00 AM – 5:00 PM</span>
-                        </div>
-                    </div>
-                </motion.div>
             </div>
         </div>
     );

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -10,9 +10,9 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "i-TESTCHEM Laboratory Services | Accredited Agricultural & Environmental Testing",
+  title: "iTestchem Laboratory Sdn Bhd | Accredited Agricultural & Environmental Testing",
   description:
-    "i-TESTCHEM provides SAMM-accredited MS ISO/IEC 17025 agricultural, environmental, and chemical analysis laboratory services in Sarawak, Malaysia since 2013.",
+    "iTestchem provides SAMM-accredited MS ISO/IEC 17025 agricultural, environmental, and chemical analysis laboratory services in Sarawak, Malaysia since 2013.",
 };
 
 export default function RootLayout({

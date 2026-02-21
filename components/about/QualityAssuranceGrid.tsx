@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
@@ -67,7 +67,7 @@ const qaColumns: QAColumn[] = [
 
 export default function QualityAssuranceGrid() {
     return (
-        <section className="bg-background-legacy py-16 border-y border-slate-200">
+        <section id="quality" className="scroll-mt-14 bg-background-legacy py-16 border-y border-slate-200">
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 {/* Section header */}
                 <motion.div
@@ -88,7 +88,7 @@ export default function QualityAssuranceGrid() {
                         Rigorous QA/QC Protocols
                     </h2>
                     <p className="text-sm text-slate-500 leading-relaxed">
-                        Every analysis at i-TESTCHEM is governed by a multi-layered quality
+                        Every analysis at iTestchem is governed by a multi-layered quality
                         assurance framework designed to ensure accuracy, precision, and
                         regulatory defensibility.
                     </p>

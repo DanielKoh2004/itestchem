@@ -40,7 +40,7 @@ function ExpertiseBadge({ icon: Icon, title, subtitle }: ExpertiseBadgeProps) {
 
 export default function LeadershipAuthority() {
     return (
-        <section className="bg-white py-16 border-b border-slate-200">
+        <section id="leadership" className="scroll-mt-14 bg-white py-16 border-b border-slate-200">
             <motion.div
                 initial="hidden"
                 whileInView="visible"
@@ -54,18 +54,21 @@ export default function LeadershipAuthority() {
                         <div className="flex items-center gap-3 mb-4">
                             <div className="h-px w-10 bg-borneo-green" />
                             <span className="text-[11px] text-borneo-green font-bold uppercase tracking-[0.2em]">
-                                Leadership
+                                Established Since 2013
                             </span>
                         </div>
-                        <h2 className="text-3xl font-bold text-slate-900 leading-tight mb-4">
-                            Led by Registered
+                        <h2 className="text-3xl font-bold text-slate-900 leading-tight mb-3">
+                            iTestchem Laboratory
                             <br />
-                            Analytical Expertise
+                            Sdn Bhd
                         </h2>
+                        <p className="text-xs text-slate-400 italic mb-4">
+                            Formerly known as i-TESTCHEM Laboratory Services
+                        </p>
                         <p className="text-sm text-slate-500 leading-relaxed">
-                            Our laboratory operations are governed by senior chemists with
-                            deep regulatory knowledge and decades of hands-on analytical
-                            experience across diverse sample matrices.
+                            Founded in 2013, our laboratory operations are governed by
+                            senior chemists with deep regulatory knowledge and decades of
+                            hands-on analytical experience across diverse sample matrices.
                         </p>
                     </motion.div>
 

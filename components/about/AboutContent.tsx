@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
@@ -70,7 +70,7 @@ function AnimatedHero() {
                     >
                         <div className="h-px w-12 bg-borneo-green" />
                         <span className="text-[11px] text-emerald-400 font-bold uppercase tracking-[0.25em]">
-                            About i-TESTCHEM
+                            About iTestchem
                         </span>
                     </motion.div>
 
@@ -340,7 +340,7 @@ function StaggeredAccreditationBanner() {
                             variants={fadeUp}
                             className="text-sm text-emerald-100/70 leading-relaxed mb-8 max-w-2xl"
                         >
-                            i-TESTCHEM Laboratory Services has been formally accredited under
+                            iTestchem Laboratory Services has been formally accredited under
                             the Skim Akreditasi Makmal Malaysia (SAMM), administered by the
                             Department of Standards Malaysia. This accreditation confirms that
                             our laboratory operates a quality management system, demonstrates
@@ -472,7 +472,7 @@ function QAAnimatedGrid() {
                         Rigorous QA/QC Protocols
                     </h2>
                     <p className="text-sm text-slate-500 leading-relaxed">
-                        Every analysis at i-TESTCHEM is governed by a multi-layered quality
+                        Every analysis at iTestchem is governed by a multi-layered quality
                         assurance framework designed to ensure accuracy, precision, and
                         regulatory defensibility.
                     </p>
@@ -554,7 +554,7 @@ function LogisticsAndValue() {
                                 Strategically positioned between{" "}
                                 <strong className="text-white">Kuching</strong> and{" "}
                                 <strong className="text-white">Kota Samarahan</strong>,
-                                i-TESTCHEM offers convenient access for plantation estates,
+                                iTestchem offers convenient access for plantation estates,
                                 government agencies, and industrial clients across Sarawak.
                             </p>
                             <div className="space-y-4 border-t border-slate-700 pt-5">
@@ -590,7 +590,7 @@ function LogisticsAndValue() {
                             Uncompromised Quality
                         </h2>
                         <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                            i-TESTCHEM is committed to providing{" "}
+                            iTestchem is committed to providing{" "}
                             <strong className="text-slate-800">
                                 highly competitive pricing
                             </strong>{" "}

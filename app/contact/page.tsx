@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import TopUtilityBar from "@/components/TopUtilityBar";
 import MainHeader from "@/components/MainHeader";
 import MainNavigation from "@/components/MainNavigation";
@@ -8,19 +8,19 @@ import ContactForm from "@/components/contact/ContactForm";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Contact Us | i-TESTCHEM",
+    title: "Contact Us | iTestchem",
     description:
-        "Get in touch with i-TESTCHEM Laboratory Services. Visit our Kuching HQ or Kota Samarahan Technical Center. Request a quote, track samples, or reach our technical support team.",
+        "Get in touch with iTestchem Laboratory Sdn Bhd in Kuching, Sarawak. Request a quote, track samples, or reach our technical support team.",
 };
 
 export default function ContactPage() {
     return (
         <>
-            <header className="w-full shadow-sm z-50 relative">
+            <header className="w-full shadow-sm relative">
                 <TopUtilityBar />
                 <MainHeader />
-                <MainNavigation />
             </header>
+            <MainNavigation />
 
             {/* Dark banner */}
             <section className="bg-slate-navy text-white py-14 relative overflow-hidden">
@@ -33,7 +33,7 @@ export default function ContactPage() {
                         </span>
                     </div>
                     <h1 className="text-4xl md:text-5xl font-black leading-tight mb-4">
-                        Contact i-TESTCHEM
+                        Contact iTestchem
                     </h1>
                     <p className="text-sm text-slate-300 max-w-xl leading-relaxed font-light">
                         Whether you need a quote, technical support, or sample collection
@@ -44,7 +44,7 @@ export default function ContactPage() {
                     <div className="flex flex-wrap gap-6 mt-8">
                         <div className="flex items-center gap-2 text-xs text-slate-400">
                             <MapPin className="w-4 h-4 text-emerald-400" />
-                            <span>2 Locations in Sarawak</span>
+                            <span>Kuching, Sarawak</span>
                         </div>
                         <div className="flex items-center gap-2 text-xs text-slate-400">
                             <Phone className="w-4 h-4 text-emerald-400" />

@@ -1,4 +1,4 @@
-import { Globe, Mail, Radio } from "lucide-react";
+﻿import { Globe, Mail, Radio } from "lucide-react";
 
 interface FooterLinkGroup {
     heading: string;
@@ -16,7 +16,7 @@ interface OfficeInfo {
 const corporateLinks: FooterLinkGroup = {
     heading: "Corporate",
     links: [
-        { label: "About i-TESTCHEM", href: "#" },
+        { label: "About iTestchem", href: "#" },
         { label: "Our Team", href: "#" },
         { label: "Quality Policy", href: "#" },
         { label: "Sustainability Commitment", href: "#" },
@@ -26,28 +26,16 @@ const corporateLinks: FooterLinkGroup = {
 
 const offices: OfficeInfo[] = [
     {
-        heading: "Headquarters",
-        officeName: "Kuching Office",
+        heading: "Our Office",
+        officeName: "Kuching, Sarawak",
         address: [
-            "Lot 2345, Section 66 KTLD",
-            "Pending Industrial Estate",
-            "93450 Kuching, Sarawak",
-            "Malaysia",
+            "1st Floor, Sublot 6",
+            "Contempo Commercial Centre",
+            "Mile 8, Kuching-Serian Road",
+            "93250 Kuching, Sarawak, Malaysia",
         ],
         phone: "Ms. Koh Yew Ping: 013-8183876",
         extra: "E: itestchem@gmail.com",
-    },
-    {
-        heading: "Kota Samarahan",
-        officeName: "Technical Center",
-        address: [
-            "Unit 12-14, Block A",
-            "Samarahan Industrial Park",
-            "94300 Kota Samarahan",
-            "Sarawak, Malaysia",
-        ],
-        phone: "Hours: Mon-Fri, 8am-5pm",
-        extra: "",
     },
 ];
 
@@ -58,7 +46,7 @@ const sectorLinks: FooterLinkGroup = {
         { label: "Agriculture & Plantations", href: "#" },
         { label: "Environmental Monitoring", href: "#" },
         { label: "Food & Beverage", href: "#" },
-        { label: "Consulting", href: "#" },
+        { label: "Consultation", href: "#" },
     ],
 };
 
@@ -69,7 +57,7 @@ const bottomLinks = [
     { label: "Site Map", href: "#" },
 ];
 
-const disclaimer = `DISCLAIMER: i-TESTCHEM Laboratory Services provides professional laboratory testing services. All reports and results issued by i-TESTCHEM are for the exclusive use of the client and are based strictly on the sample(s) as received. We do not accept liability for consequences arising from improper sampling techniques performed by third parties or for interpretations made by clients. Our maximum liability in any circumstance is limited to the cost of the specific analysis performed. Re-testing requests must be submitted within 14 business days of report issuance. Unauthorized reproduction or alteration of our certificates of analysis is strictly prohibited under Malaysian law.`;
+const disclaimer = `DISCLAIMER: iTestchem Laboratory Sdn Bhd provides professional laboratory testing services. All reports and results issued by iTestchem are for the exclusive use of the client and are based strictly on the sample(s) as received. We do not accept liability for consequences arising from improper sampling techniques performed by third parties or for interpretations made by clients. Our maximum liability in any circumstance is limited to the cost of the specific analysis performed. Re-testing requests must be submitted within 14 business days of report issuance. Unauthorized reproduction or alteration of our certificates of analysis is strictly prohibited under Malaysian law.`;
 
 export default function Footer() {
     return (
@@ -187,7 +175,7 @@ export default function Footer() {
                 {/* Bottom Section */}
                 <div className="flex flex-col gap-6">
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-[10px] text-slate-500 font-bold uppercase tracking-widest">
-                        <p>© 2024 i-TESTCHEM LABORATORY SERVICES SDN BHD.</p>
+                        <p>© 2024 iTESTCHEM LABORATORY SDN BHD.</p>
                         <div className="flex flex-wrap gap-8">
                             {bottomLinks.map((link) => (
                                 <a

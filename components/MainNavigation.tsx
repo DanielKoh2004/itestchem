@@ -1,4 +1,7 @@
-import { ChevronDown } from "lucide-react";
+"use client";
+
+import { useState, useEffect } from "react";
+import { ChevronDown, FlaskConical } from "lucide-react";
 
 interface NavItem {
     label: string;
@@ -11,24 +14,45 @@ const navItems: NavItem[] = [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about" },
     {
-        label: "Testing Services",
+        label: "Our Services",
         href: "#",
         dropdown: [
             { label: "Agricultural Analysis", href: "#" },
             { label: "Environmental Analysis", href: "#" },
             { label: "Food & Feed Analysis", href: "#" },
-            { label: "Consulting Services", href: "#" },
+            { label: "Consultation Services", href: "#" },
         ],
     },
-    { label: "Consulting", href: "#" },
     { label: "Contact", href: "/contact" },
-    { label: "Careers", href: "#" },
+    { label: "Careers", href: "/careers" },
 ];
 
 export default function MainNavigation() {
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => setScrolled(window.scrollY > 50);
+        handleScroll();
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
     return (
-        <nav className="bg-borneo-green text-white">
-            <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <nav className="bg-borneo-green text-white sticky top-0 z-50 shadow-md">
+            <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center">
+                {/* Mini brand mark — visible only when scrolled */}
+                <div
+                    className={`flex items-center gap-2 pr-5 border-r border-emerald-900/30 transition-all duration-300 overflow-hidden ${scrolled ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0 pr-0 border-r-0"
+                        }`}
+                >
+                    <div className="w-8 h-8 bg-white/10 flex items-center justify-center rounded-sm flex-shrink-0">
+                        <FlaskConical className="w-4 h-4 text-emerald-300" />
+                    </div>
+                    <span className="text-[10px] font-bold tracking-widest whitespace-nowrap">
+                        iTestchem
+                    </span>
+                </div>
+
                 <ul className="flex items-center gap-0 text-xs font-bold uppercase tracking-widest">
                     {navItems.map((item) => (
                         <li
@@ -67,4 +91,3 @@ export default function MainNavigation() {
         </nav>
     );
 }
-

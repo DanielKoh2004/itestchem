@@ -3,9 +3,9 @@ import MainHeader from "@/components/MainHeader";
 import MainNavigation from "@/components/MainNavigation";
 import HeroSection from "@/components/HeroSection";
 import ServicesGrid from "@/components/ServicesGrid";
-import QualityAssurance from "@/components/QualityAssurance";
+
 import TechnicalUpdates from "@/components/TechnicalUpdates";
-import QuickDownloads from "@/components/QuickDownloads";
+
 import AccreditationBar from "@/components/AccreditationBar";
 import Footer from "@/components/Footer";
 
@@ -13,11 +13,11 @@ export default function HomePage() {
   return (
     <>
       {/* Header */}
-      <header className="w-full shadow-sm z-50 relative">
+      <header className="w-full shadow-sm relative">
         <TopUtilityBar />
         <MainHeader />
-        <MainNavigation />
       </header>
+      <MainNavigation />
 
       {/* Main Content */}
       <main className="flex-grow bg-background-legacy">
@@ -28,13 +28,11 @@ export default function HomePage() {
           {/* Main Column */}
           <div className="lg:col-span-8">
             <ServicesGrid />
-            <QualityAssurance />
           </div>
 
           {/* Sidebar */}
           <div className="lg:col-span-4 flex flex-col gap-8">
             <TechnicalUpdates />
-            <QuickDownloads />
           </div>
         </div>
 

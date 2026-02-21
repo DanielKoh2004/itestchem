@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
@@ -28,11 +28,19 @@ interface StatBadgeProps {
     icon: LucideIcon;
     value: string;
     label: string;
+    href: string;
 }
 
-function StatBadge({ icon: Icon, value, label }: StatBadgeProps) {
+function StatBadge({ icon: Icon, value, label, href }: StatBadgeProps) {
     return (
-        <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3">
+        <a
+            href={href}
+            onClick={(e) => {
+                e.preventDefault();
+                document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="flex items-center gap-3 bg-white/5 border border-white/10 px-5 py-3 hover:bg-white/10 transition-colors cursor-pointer"
+        >
             <Icon className="w-5 h-5 text-emerald-400" />
             <div>
                 <p className="text-sm font-bold text-white leading-none">{value}</p>
@@ -40,7 +48,7 @@ function StatBadge({ icon: Icon, value, label }: StatBadgeProps) {
                     {label}
                 </p>
             </div>
-        </div>
+        </a>
     );
 }
 
@@ -63,7 +71,7 @@ export default function AboutHero() {
                     <motion.div variants={fadeUp} className="flex items-center gap-3 mb-6">
                         <div className="h-px w-12 bg-borneo-green" />
                         <span className="text-[11px] text-emerald-400 font-bold uppercase tracking-[0.25em]">
-                            About i-TESTCHEM
+                            About iTestchem
                         </span>
                     </motion.div>
 
@@ -88,10 +96,10 @@ export default function AboutHero() {
 
                     {/* Stat badges */}
                     <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
-                        <StatBadge icon={Calendar} value="Since 2013" label="Established" />
-                        <StatBadge icon={Shield} value="ISO 17025" label="Accredited" />
-                        <StatBadge icon={Award} value="SAMM" label="Recognized" />
-                        <StatBadge icon={FlaskConical} value="4 Scopes" label="Analytical" />
+                        <StatBadge icon={Calendar} value="Since 2013" label="Established" href="#leadership" />
+                        <StatBadge icon={Shield} value="ISO 17025" label="Accredited" href="#accreditation" />
+
+                        <StatBadge icon={FlaskConical} value="4 Scopes" label="Analytical" href="#quality" />
                     </motion.div>
                 </motion.div>
 

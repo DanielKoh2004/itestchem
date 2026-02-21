@@ -1,4 +1,4 @@
-import { FlaskConical, Search } from "lucide-react";
+﻿import { FlaskConical, Search } from "lucide-react";
 
 export default function MainHeader() {
     return (
@@ -11,10 +11,10 @@ export default function MainHeader() {
                     </div>
                     <div>
                         <h1 className="text-3xl font-black text-slate-900 leading-none">
-                            i-TESTCHEM
+                            iTestchem
                         </h1>
                         <p className="text-[10px] text-slate-500 font-bold uppercase tracking-[0.2em] mt-1.5">
-                            Laboratory Services
+                            Laboratory Sdn Bhd
                         </p>
                     </div>
                 </div>

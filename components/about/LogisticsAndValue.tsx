@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
@@ -76,10 +76,9 @@ export default function LogisticsAndValue() {
                                 <h3 className="text-xl font-bold">Strategic Location</h3>
                             </div>
                             <p className="text-sm text-slate-300 leading-relaxed mb-6">
-                                Strategically positioned between{" "}
-                                <strong className="text-white">Kuching</strong> and{" "}
-                                <strong className="text-white">Kota Samarahan</strong>,
-                                i-TESTCHEM offers convenient access for plantation estates,
+                                Located along the{" "}
+                                <strong className="text-white">Kuching-Serian Road</strong>,
+                                iTestchem offers convenient access for plantation estates,
                                 government agencies, and industrial clients across Sarawak.
                             </p>
                             <div className="space-y-4 border-t border-slate-700 pt-5">
@@ -96,7 +95,7 @@ export default function LogisticsAndValue() {
                             </div>
                         </div>
                         <ImagePlaceholder
-                            label="Kuching / Kota Samarahan Facility"
+                            label="Kuching Laboratory Facility"
                             className="w-full h-[300px] rounded-sm mt-8"
                         />
                     </motion.div>
@@ -115,7 +114,7 @@ export default function LogisticsAndValue() {
                             Uncompromised Quality
                         </h2>
                         <p className="text-sm text-slate-500 leading-relaxed mb-6">
-                            i-TESTCHEM is committed to providing{" "}
+                            iTestchem is committed to providing{" "}
                             <strong className="text-slate-800">
                                 highly competitive pricing
                             </strong>{" "}
@@ -141,8 +140,8 @@ export default function LogisticsAndValue() {
                             />
                             <ValueCard
                                 icon={MapPin}
-                                title="Dual Coverage"
-                                text="Kuching HQ and Kota Samarahan Technical Center locations"
+                                title="Central Location"
+                                text="Conveniently located along Kuching-Serian Road, Mile 8"
                             />
                         </div>
                     </motion.div>
