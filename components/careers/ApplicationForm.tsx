@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Loader2, Send, CheckCircle2, Upload, FileText, X } from "lucide-react";
+import { Turnstile } from "@marsidev/react-turnstile";
+import { submitApplication } from "@/app/actions/application";
 
 const positionOptions = [
     "Analytical Chemist",
@@ -34,11 +36,14 @@ export default function ApplicationForm() {
     const [coverLetterFile, setCoverLetterFile] = useState<File | null>(null);
     const [coverLetterError, setCoverLetterError] = useState<string | null>(null);
     const coverLetterInputRef = useRef<HTMLInputElement>(null);
+    const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+    const [submitError, setSubmitError] = useState<string | null>(null);
 
     const {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
+        reset,
     } = useForm<ApplicationData>({
         resolver: zodResolver(applicationSchema),
     });
@@ -90,19 +95,39 @@ export default function ApplicationForm() {
     };
 
     const onSubmit = async (data: ApplicationData) => {
+        setSubmitError(null);
         // Validate resume on submit
         if (!resumeFile) {
             setResumeError("Please upload your resume");
             return;
         }
 
-        await new Promise((resolve) => setTimeout(resolve, 1500));
-        console.log("Application submitted:", {
-            ...data,
-            resume: resumeFile,
-            coverLetter: coverLetterFile ?? null,
-        });
-        setSubmitted(true);
+        if (!turnstileToken) {
+            setSubmitError("Please complete the CAPTCHA to verify you are human.");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("fullName", data.fullName);
+        formData.append("email", data.email);
+        formData.append("position", data.position);
+        formData.append("turnstileToken", turnstileToken);
+        formData.append("resume", resumeFile);
+        if (coverLetterFile) {
+            formData.append("coverLetter", coverLetterFile);
+        }
+
+        const response = await submitApplication(formData);
+
+        if (response.error) {
+            setSubmitError(response.error);
+        } else if (response.success) {
+            setSubmitted(true);
+            reset();
+            clearResume();
+            clearCoverLetter();
+            setTurnstileToken(null);
+        }
     };
 
     if (submitted) {
@@ -304,6 +329,18 @@ export default function ApplicationForm() {
                         <p className="text-xs text-red-500 mt-1">{resumeError}</p>
                     )}
                 </div>
+
+                {submitError && (
+                    <div className="text-xs text-red-500 font-bold border-l-2 border-red-500 pl-3">
+                        {submitError}
+                    </div>
+                )}
+
+                <Turnstile
+                    siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                    onSuccess={(tokenParam: string) => setTurnstileToken(tokenParam)}
+                    onError={() => setTurnstileToken(null)}
+                />
 
                 {/* Submit */}
                 <button

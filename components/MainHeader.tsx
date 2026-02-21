@@ -1,4 +1,5 @@
-﻿import { FlaskConical } from "lucide-react";
+﻿import Image from "next/image";
+import Link from "next/link";
 import SearchBar from "@/components/ui/SearchBar";
 
 export default function MainHeader() {
@@ -6,9 +7,16 @@ export default function MainHeader() {
         <div className="bg-white py-5 px-4 md:px-8 border-b border-slate-200 relative z-[100]">
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
                 {/* Logo Block */}
-                <div className="flex items-center gap-5 animate-fade-in-left">
-                    <div className="w-14 h-14 bg-borneo-green flex items-center justify-center rounded-sm">
-                        <FlaskConical className="w-8 h-8 text-white" />
+                <Link href="/" className="flex items-center gap-5 animate-fade-in-left">
+                    <div className="flex items-center justify-center rounded-sm -mt-2.5">
+                        <Image
+                            src="/img/logo.png"
+                            alt="iTestchem Logo"
+                            width={56}
+                            height={56}
+                            className="h-14 w-auto object-contain"
+                            priority
+                        />
                     </div>
                     <div>
                         <h1 className="text-3xl font-black text-slate-900 leading-none">
@@ -18,7 +26,7 @@ export default function MainHeader() {
                             Laboratory Sdn Bhd
                         </p>
                     </div>
-                </div>
+                </Link>
 
                 {/* Search & CTA */}
                 <div className="flex items-center gap-4 w-full md:w-auto animate-fade-in-right">

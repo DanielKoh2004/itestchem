@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronDown, FlaskConical } from "lucide-react";
+import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 
 interface NavItem {
     label: string;
@@ -42,17 +43,24 @@ export default function MainNavigation() {
         <nav className="bg-borneo-green text-white sticky top-0 z-50 shadow-md">
             <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center">
                 {/* Mini brand mark — visible only when scrolled */}
-                <div
+                <Link
+                    href="/"
                     className={`flex items-center gap-2 pr-5 border-r border-emerald-900/30 transition-all duration-300 overflow-hidden ${scrolled ? "max-w-[200px] opacity-100" : "max-w-0 opacity-0 pr-0 border-r-0"
                         }`}
                 >
-                    <div className="w-8 h-8 bg-white/10 flex items-center justify-center rounded-sm flex-shrink-0">
-                        <FlaskConical className="w-4 h-4 text-emerald-300" />
+                    <div className="w-8 h-8 flex items-center justify-center rounded-sm flex-shrink-0 bg-white/90 p-0.5">
+                        <Image
+                            src="/img/logo.png"
+                            alt="iTestchem Logo"
+                            width={32}
+                            height={32}
+                            className="w-full h-full object-contain"
+                        />
                     </div>
                     <span className="text-[10px] font-bold tracking-widest whitespace-nowrap">
                         iTestchem
                     </span>
-                </div>
+                </Link>
 
                 <ul className="flex items-center gap-0 text-xs font-bold uppercase tracking-widest">
                     {navItems.map((item) => (
