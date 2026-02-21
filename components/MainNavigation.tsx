@@ -17,9 +17,9 @@ const navItems: NavItem[] = [
         label: "Our Services",
         href: "#",
         dropdown: [
-            { label: "Agricultural Analysis", href: "#" },
-            { label: "Environmental Analysis", href: "#" },
-            { label: "Food & Feed Analysis", href: "#" },
+            { label: "Agricultural Analysis", href: "/services/agricultural" },
+            { label: "Environmental Analysis", href: "/services/environmental" },
+            { label: "Food & Feed Analysis", href: "/services/food" },
             { label: "Consultation Services", href: "#" },
         ],
     },
