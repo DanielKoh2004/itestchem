@@ -104,18 +104,20 @@ export default function FoodPage() {
                         <p className="text-xs text-amber-800 leading-relaxed">
                             Parameters marked with{" "}
                             <span className="font-bold text-amber-600">(*)</span>{" "}
-                            denote rigorous in-house methodologies currently outside
-                            the scope of SAMM accreditation.
+                            denotes not Accredited parameters.
                         </p>
-                        <Link
-                            href="/contact"
-                            className="inline-block mt-3 px-5 py-2 bg-borneo-green hover:bg-borneo-green-dark text-white text-[11px] font-bold uppercase tracking-widest transition-colors"
-                        >
-                            Request Official Quotation
-                        </Link>
                     </div>
                 </div>
-            </section>
+
+                <div className="mt-10 flex justify-center">
+                    <Link
+                        href="/contact"
+                        className="inline-flex items-center gap-2 bg-slate-navy hover:bg-black text-white px-8 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow-lg transition-all"
+                    >
+                        Request Official Quotation
+                    </Link>
+                </div>
+            </section >
             <Footer />
         </>
     );

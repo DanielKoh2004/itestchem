@@ -73,4 +73,25 @@ export const searchIndex: SearchResult[] = [
         url: "/services/food",
         category: "Testing Service",
     },
+    {
+        id: "job-intern",
+        title: "Hiring Laboratory Intern",
+        description: "Gain hands-on experience in sample preparation, analytical chemistry, and ISO 17025 workflows.",
+        url: "/careers",
+        category: "Careers",
+    },
+    {
+        id: "job-chemist",
+        title: "Analytical Chemist",
+        description: "Full-Time, Kuching HQ. Requirements: B.Sc in Chemistry, Registered with IKM, 2+ years ISO 17025 experience.",
+        url: "/careers",
+        category: "Careers",
+    },
+    {
+        id: "job-tech",
+        title: "Laboratory Technician",
+        description: "Full-Time, Kota Samarahan. Requirements: Diploma in Science, experience in sample preparation.",
+        url: "/careers",
+        category: "Careers",
+    }
 ];

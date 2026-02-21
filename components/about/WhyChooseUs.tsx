@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShieldCheck, Scale, Lock, Users, ChevronDown } from "lucide-react";
+import { ShieldCheck, Scale, Lock, Users, ChevronDown, BadgeDollarSign } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import Image from "next/image";
 
 interface Pillar {
     title: string;
@@ -15,32 +15,25 @@ interface Pillar {
 
 const pillars: Pillar[] = [
     {
-        title: "Integrity",
+        title: "Integrity, Impartiality & Confidentiality",
         icon: ShieldCheck,
-        image: "Precision Spectrometry",
+        image: "/img/integrity.jpg",
         content:
-            "Uncompromising honesty and scientific accuracy in all analytical procedures, ensuring that every reported result reflects the absolute truth without manipulation.",
-    },
-    {
-        title: "Impartiality",
-        icon: Scale,
-        image: "Independent Audit",
-        content:
-            "Operating independently of commercial, financial, or external pressures to guarantee that all sampling and testing activities remain entirely unbiased.",
-    },
-    {
-        title: "Confidentiality",
-        icon: Lock,
-        image: "Secure Laboratory Data",
-        content:
-            "Enforcing strict physical and digital access controls to safeguard client proprietary information, sample origins, and final analytical reports.",
+            "Uncompromising honesty and scientific accuracy without manipulation. Operating independently of external pressures to remain unbiased. Enforcing strict controls to safeguard client proprietary information.",
     },
     {
         title: "Client Satisfaction",
         icon: Users,
-        image: "Client Consultation",
+        image: "/img/client satisfaction.jpg",
         content:
             "We work closely with our clients to understand their specific req and regulatory obligations providing professional guidance and dependable analytical support tailored to their needs. The laboratory is structured to deliver accurate and clear reports within a great turnaround time, ensuring confidence and efficiency for our clients.",
+    },
+    {
+        title: "Competitive Pricing",
+        icon: BadgeDollarSign,
+        image: "/img/competitive price.jpg",
+        content:
+            "iTestchem is committed to providing highly competitive pricing without sacrificing the assurance of satisfaction.",
     },
 ];
 
@@ -62,7 +55,7 @@ export default function WhyChooseUs() {
                         Why Choose iTestchem
                     </h2>
                     <p className="text-sm text-slate-500 mt-2 max-w-xl leading-relaxed">
-                        Our laboratory operates on four core pillars mandated by
+                        Our laboratory operates on three core pillars mandated by
                         MS ISO/IEC 17025 — the international standard for testing and
                         calibration laboratories.
                     </p>
@@ -80,16 +73,19 @@ export default function WhyChooseUs() {
                                 layout
                                 transition={{ duration: 0.5, ease: "easeInOut" }}
                                 onClick={() => setActiveIndex(index)}
-                                className={`relative overflow-hidden cursor-pointer rounded-sm border border-slate-700 ${isActive
+                                className={`group relative overflow-hidden cursor-pointer rounded-sm border border-slate-700 ${isActive
                                     ? "flex-[3] h-[400px] md:h-auto"
                                     : "flex-[1] h-[120px] md:h-auto"
                                     }`}
                             >
-                                {/* Background — ImagePlaceholder */}
+                                {/* Background — Image */}
                                 <div className="absolute inset-0">
-                                    <ImagePlaceholder
-                                        label={pillar.image}
-                                        className="w-full h-full"
+                                    <Image
+                                        src={pillar.image}
+                                        alt={pillar.title}
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                        className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
                                     />
                                 </div>
 
@@ -133,7 +129,7 @@ export default function WhyChooseUs() {
                                                             {pillar.title}
                                                         </h3>
                                                         <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-[0.2em]">
-                                                            Core Pillar {index + 1} of 4
+                                                            Core Pillar {index + 1} of 3
                                                         </span>
                                                     </div>
                                                 </div>

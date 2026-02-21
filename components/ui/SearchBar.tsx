@@ -103,7 +103,7 @@ export default function SearchBar() {
                 {query.length > 0 && (
                     <button
                         onClick={handleClear}
-                        className="absolute right-0 top-0 h-full px-3 flex items-center justify-center text-slate-400 hover:text-white transition-colors"
+                        className="absolute right-0 top-0 h-full px-3 flex items-center justify-center text-slate-400 hover:text-red-500 transition-colors"
                         aria-label="Clear search"
                     >
                         <X className="w-4 h-4" />

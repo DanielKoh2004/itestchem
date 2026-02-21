@@ -110,8 +110,7 @@ export default function EnvironmentalPage() {
                         <p className="text-xs text-amber-800 leading-relaxed">
                             Parameters marked with{" "}
                             <span className="font-bold text-amber-600">(*)</span>{" "}
-                            denote rigorous in-house methodologies currently outside
-                            the scope of SAMM accreditation.
+                            denotes Not Accredited parameters.
                         </p>
                         <Link
                             href="/contact"
