@@ -1,4 +1,5 @@
 ﻿import { Globe, Mail, Radio } from "lucide-react";
+import Link from "next/link";
 
 interface FooterLinkGroup {
     heading: string;
@@ -73,12 +74,12 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {corporateLinks.links.map((link) => (
                                 <li key={link.label}>
-                                    <a
+                                    <Link
                                         className="hover:text-emerald-400 transition-colors"
                                         href={link.href}
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -114,12 +115,12 @@ export default function Footer() {
                         <ul className="space-y-3">
                             {sectorLinks.links.map((link) => (
                                 <li key={link.label}>
-                                    <a
+                                    <Link
                                         className="hover:text-emerald-400 transition-colors"
                                         href={link.href}
                                     >
                                         {link.label}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -147,27 +148,27 @@ export default function Footer() {
                             </button>
                         </form>
                         <div className="flex gap-4 mt-6">
-                            <a
+                            <Link
                                 className="text-slate-600 hover:text-emerald-400 transition-colors"
                                 href="#"
                                 aria-label="Website"
                             >
                                 <Globe className="w-5 h-5" />
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className="text-slate-600 hover:text-emerald-400 transition-colors"
                                 href="#"
                                 aria-label="Email"
                             >
                                 <Mail className="w-5 h-5" />
-                            </a>
-                            <a
+                            </Link>
+                            <Link
                                 className="text-slate-600 hover:text-emerald-400 transition-colors"
                                 href="#"
                                 aria-label="Podcast"
                             >
                                 <Radio className="w-5 h-5" />
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -178,13 +179,13 @@ export default function Footer() {
                         <p>© 2024 iTESTCHEM LABORATORY SDN BHD.</p>
                         <div className="flex flex-wrap gap-8">
                             {bottomLinks.map((link) => (
-                                <a
+                                <Link
                                     key={link.label}
                                     className="hover:text-emerald-400 transition-colors"
                                     href={link.href}
                                 >
                                     {link.label}
-                                </a>
+                                </Link>
                             ))}
                         </div>
                     </div>

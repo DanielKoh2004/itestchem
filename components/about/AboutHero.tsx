@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
 import { FlaskConical, Calendar, Shield, Award } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 
 const ease: Easing = [0.33, 1, 0.68, 1];
@@ -33,7 +34,7 @@ interface StatBadgeProps {
 
 function StatBadge({ icon: Icon, value, label, href }: StatBadgeProps) {
     return (
-        <a
+        <Link
             href={href}
             onClick={(e) => {
                 e.preventDefault();
@@ -48,7 +49,7 @@ function StatBadge({ icon: Icon, value, label, href }: StatBadgeProps) {
                     {label}
                 </p>
             </div>
-        </a>
+        </Link>
     );
 }
 

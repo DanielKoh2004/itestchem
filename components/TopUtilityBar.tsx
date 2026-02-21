@@ -1,4 +1,5 @@
 import { Globe, BadgeCheck, LogIn } from "lucide-react";
+import Link from "next/link";
 
 export default function TopUtilityBar() {
     return (
@@ -14,13 +15,13 @@ export default function TopUtilityBar() {
                         MS ISO/IEC 17025
                     </span>
                 </div>
-                <a
+                <Link
                     className="text-emerald-400 hover:text-white transition-colors flex items-center gap-1"
                     href="#"
                 >
                     <LogIn className="w-3.5 h-3.5" />
                     Client Portal Login
-                </a>
+                </Link>
             </div>
         </div>
     );

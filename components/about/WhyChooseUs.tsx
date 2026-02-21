@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShieldCheck, Scale, Lock, ChevronDown } from "lucide-react";
+import { ShieldCheck, Scale, Lock, Users, ChevronDown } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 
@@ -35,6 +35,13 @@ const pillars: Pillar[] = [
         content:
             "Enforcing strict physical and digital access controls to safeguard client proprietary information, sample origins, and final analytical reports.",
     },
+    {
+        title: "Client Satisfaction",
+        icon: Users,
+        image: "Client Consultation",
+        content:
+            "We work closely with our clients to understand their specific req and regulatory obligations providing professional guidance and dependable analytical support tailored to their needs. The laboratory is structured to deliver accurate and clear reports within a great turnaround time, ensuring confidence and efficiency for our clients.",
+    },
 ];
 
 export default function WhyChooseUs() {
@@ -55,7 +62,7 @@ export default function WhyChooseUs() {
                         Why Choose iTestchem
                     </h2>
                     <p className="text-sm text-slate-500 mt-2 max-w-xl leading-relaxed">
-                        Our laboratory operates on three non-negotiable pillars mandated by
+                        Our laboratory operates on four core pillars mandated by
                         MS ISO/IEC 17025 — the international standard for testing and
                         calibration laboratories.
                     </p>
@@ -126,7 +133,7 @@ export default function WhyChooseUs() {
                                                             {pillar.title}
                                                         </h3>
                                                         <span className="text-[10px] text-emerald-400 font-bold uppercase tracking-[0.2em]">
-                                                            Core Pillar {index + 1} of 3
+                                                            Core Pillar {index + 1} of 4
                                                         </span>
                                                     </div>
                                                 </div>

@@ -6,7 +6,6 @@ import Footer from "@/components/Footer";
 import AboutHero from "@/components/about/AboutHero";
 import LeadershipAuthority from "@/components/about/LeadershipAuthority";
 import AccreditationBanner from "@/components/about/AccreditationBanner";
-import QualityAssuranceGrid from "@/components/about/QualityAssuranceGrid";
 import LogisticsAndValue from "@/components/about/LogisticsAndValue";
 import WhyChooseUs from "@/components/about/WhyChooseUs";
 
@@ -30,7 +29,6 @@ export default function AboutPage() {
                 <WhyChooseUs />
                 <LeadershipAuthority />
                 <AccreditationBanner />
-                <QualityAssuranceGrid />
                 <LogisticsAndValue />
             </main>
 

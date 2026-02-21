@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { ChevronDown, FlaskConical } from "lucide-react";
 
 interface NavItem {
@@ -59,7 +60,7 @@ export default function MainNavigation() {
                             key={item.label}
                             className={item.dropdown ? "group relative" : "relative"}
                         >
-                            <a
+                            <Link
                                 className={`flex items-center gap-2 py-4 px-6 border-r border-emerald-900/30 transition-colors ${item.active
                                     ? "bg-borneo-green-dark"
                                     : "hover:bg-borneo-green-dark"
@@ -70,17 +71,17 @@ export default function MainNavigation() {
                                 {item.dropdown && (
                                     <ChevronDown className="w-3.5 h-3.5 transition-transform duration-300 group-hover:rotate-180" />
                                 )}
-                            </a>
+                            </Link>
                             {item.dropdown && (
                                 <div className="dropdown-menu absolute left-0 top-full w-64 bg-white text-slate-800 shadow-2xl border-t-4 border-borneo-green-dark z-[100]">
                                     {item.dropdown.map((sub) => (
-                                        <a
+                                        <Link
                                             key={sub.label}
                                             className="block px-6 py-3 hover:bg-slate-50 border-b border-slate-100 text-[11px] transition-colors"
                                             href={sub.href}
                                         >
                                             {sub.label}
-                                        </a>
+                                        </Link>
                                     ))}
                                 </div>
                             )}
