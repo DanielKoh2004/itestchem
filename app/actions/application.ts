@@ -1,10 +1,16 @@
 "use server";
 
 import nodemailer from "nodemailer";
+import { applyRateLimit } from "../../lib/rateLimit";
 
 const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 
 export async function submitApplication(formData: FormData) {
+    const rateLimit = await applyRateLimit(5, 10 * 60 * 1000);
+    if (!rateLimit.success) {
+        return { error: `Too many requests. Please try again in ${rateLimit.retryAfter} seconds.` };
+    }
+
     const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
     const position = formData.get("position") as string;

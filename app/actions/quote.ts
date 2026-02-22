@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import { applyRateLimit } from "../../lib/rateLimit";
 
 const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 const sanitizeCsv = (unsafe: string) => {
@@ -32,10 +33,29 @@ const quoteSchema = z.object({
     phoneCode: z.string().min(1).max(10),
     phoneNumber: z.string().min(5).max(30),
     sampleGroups: z.array(sampleGroupSchema).min(1).max(10),
+}).superRefine((val, ctx) => {
+    let totalTests = 0;
+    for (const group of val.sampleGroups) {
+        for (const test of group.tests) {
+            totalTests += test.testNames.length;
+        }
+    }
+    if (totalTests > 50) {
+        ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: "Total number of requested parameters cannot exceed 50. Please contact us for bulk testing.",
+            path: ["sampleGroups"],
+        });
+    }
 });
 
 export async function submitQuoteRequest(data: any, turnstileToken: string) {
     try {
+        const rateLimit = await applyRateLimit(5, 10 * 60 * 1000);
+        if (!rateLimit.success) {
+            return { error: `Too many requests. Please try again in ${rateLimit.retryAfter} seconds.` };
+        }
+
         // 1. Verify Cloudflare Turnstile Token
         const verifyRes = await fetch(
             "https://challenges.cloudflare.com/turnstile/v0/siteverify",

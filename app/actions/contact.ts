@@ -2,6 +2,7 @@
 
 import * as z from "zod";
 import nodemailer from "nodemailer";
+import { applyRateLimit } from "../../lib/rateLimit";
 
 const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 
@@ -22,6 +23,11 @@ const contactSchema = z.object({
 });
 
 export async function submitContactForm(payload: z.infer<typeof contactSchema>, turnstileToken: string) {
+    const rateLimit = await applyRateLimit(5, 10 * 60 * 1000);
+    if (!rateLimit.success) {
+        return { error: `Too many requests. Please try again in ${rateLimit.retryAfter} seconds.` };
+    }
+
     if (!turnstileToken) {
         return { error: "CAPTCHA token missing." };
     }
