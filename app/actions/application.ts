@@ -13,8 +13,13 @@ export async function submitApplication(formData: FormData) {
     const coverLetter = formData.get("coverLetter") as File | null;
 
     if (typeof fullName !== "string" || fullName.length > 100 || fullName.length < 2) return { error: "Invalid name." };
-    if (typeof email !== "string" || email.length > 150) return { error: "Invalid email." };
     if (typeof position !== "string" || position.length > 100) return { error: "Invalid position." };
+
+    // Strict email regex to prevent CRLF injection in SMTP headers
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (typeof email !== "string" || email.length > 150 || !emailRegex.test(email)) {
+        return { error: "Invalid email format." };
+    }
 
     if (!turnstileToken) {
         return { error: "CAPTCHA token missing." };

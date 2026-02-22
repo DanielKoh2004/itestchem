@@ -6,7 +6,10 @@ import nodemailer from "nodemailer";
 const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 const sanitizeCsv = (unsafe: string) => {
     let sanitized = unsafe.replace(/"/g, '""');
-    if (/^[=+\-@\t\r]/.test(sanitized)) sanitized = "'" + sanitized;
+    // Detect formulas even if the attacker pads them with spaces or quotes
+    if (/^[\s"]*[=+\-@\t\r]/.test(unsafe)) {
+        sanitized = "'" + sanitized;
+    }
     return sanitized;
 };
 
