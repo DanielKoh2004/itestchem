@@ -31,9 +31,9 @@ export default function MainHeader() {
                 {/* Search & CTA */}
                 <div className="flex items-center gap-4 w-full md:w-auto animate-fade-in-right">
                     <SearchBar />
-                    <button className="hidden md:flex items-center gap-2 bg-slate-navy hover:bg-black text-white px-6 py-2.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow transition-all whitespace-nowrap">
+                    <Link href="/quote" className="hidden md:flex items-center gap-2 bg-slate-navy hover:bg-black text-white px-6 py-2.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow transition-all whitespace-nowrap">
                         Request Quote
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

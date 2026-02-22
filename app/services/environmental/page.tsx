@@ -98,7 +98,7 @@ export default function EnvironmentalPage() {
 
                 <div className="mt-10 flex justify-center">
                     <Link
-                        href="/contact"
+                        href="/quote"
                         className="inline-flex items-center gap-2 bg-slate-navy hover:bg-black text-white px-8 py-3.5 rounded-sm text-xs font-bold uppercase tracking-widest shadow-lg transition-all"
                     >
                         Request Official Quotation

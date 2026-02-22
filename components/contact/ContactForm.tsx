@@ -161,7 +161,7 @@ export default function ContactForm() {
                         </label>
                         <select
                             id="inquiryType"
-                            className={`w-full bg-slate-50 border text-sm text-slate-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-borneo-green focus:border-borneo-green transition-all appearance-none ${errors.inquiryType ? "border-red-400" : "border-slate-200"
+                            className={`w-full bg-slate-50 border text-sm text-slate-900 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-borneo-green focus:border-borneo-green transition-all appearance-none cursor-pointer ${errors.inquiryType ? "border-red-400" : "border-slate-200"
                                 }`}
                             defaultValue=""
                             {...register("inquiryType")}
@@ -229,7 +229,7 @@ export default function ContactForm() {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-borneo-green hover:bg-borneo-green-dark disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold text-xs uppercase tracking-[0.2em] py-4 flex items-center justify-center gap-2 transition-all shadow-lg border border-emerald-700"
+                        className="w-full bg-borneo-green hover:bg-borneo-green-dark disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold text-xs uppercase tracking-[0.2em] py-4 flex items-center justify-center gap-2 transition-all shadow-lg border border-emerald-700 cursor-pointer"
                     >
                         {isSubmitting ? (
                             <>
