@@ -33,7 +33,10 @@ export async function submitContactForm(payload: z.infer<typeof contactSchema>, 
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${turnstileToken}`,
+            body: new URLSearchParams({
+                secret: process.env.TURNSTILE_SECRET_KEY as string,
+                response: turnstileToken,
+            }).toString(),
         });
 
         const turnstileData = await turnstileResponse.json();

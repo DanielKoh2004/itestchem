@@ -17,7 +17,7 @@ const testItemSchema = z.object({
     sampleType: z.string().min(1).max(100),
     testNames: z.array(z.string().max(100)).min(1).max(50),
     otherSpecification: z.string().max(200).optional(),
-    quantity: z.number().min(1).max(10000),
+    quantity: z.number().int("Quantity must be a whole number").min(1).max(10000),
 });
 
 const sampleGroupSchema = z.object({
@@ -42,7 +42,10 @@ export async function submitQuoteRequest(data: any, turnstileToken: string) {
             {
                 method: "POST",
                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${turnstileToken}`,
+                body: new URLSearchParams({
+                    secret: process.env.TURNSTILE_SECRET_KEY as string,
+                    response: turnstileToken,
+                }).toString(),
             }
         );
 

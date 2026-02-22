@@ -32,7 +32,10 @@ export async function submitApplication(formData: FormData) {
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded",
             },
-            body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${turnstileToken}`,
+            body: new URLSearchParams({
+                secret: process.env.TURNSTILE_SECRET_KEY as string,
+                response: turnstileToken,
+            }).toString(),
         });
 
         const turnstileData = await turnstileResponse.json();
@@ -57,7 +60,7 @@ export async function submitApplication(formData: FormData) {
         // Buffer Conversion
         const resumeBuffer = Buffer.from(await resume.arrayBuffer());
 
-        const safeResumeName = resume.name.replace(/[^a-zA-Z0-9.\-_]/g, '_').replace(/\.[^/.]+$/, "") + ".pdf";
+        const safeResumeName = "Resume_" + resume.name.replace(/[^a-zA-Z0-9.\-_]/g, '_').replace(/\.[^/.]+$/, "") + ".pdf";
         const attachments = [
             {
                 filename: safeResumeName,
@@ -75,7 +78,7 @@ export async function submitApplication(formData: FormData) {
                 return { error: "Cover letter file size exceeds the 5MB limit." };
             }
             const coverLetterBuffer = Buffer.from(await coverLetter.arrayBuffer());
-            const safeCoverLetterName = coverLetter.name.replace(/[^a-zA-Z0-9.\-_]/g, '_').replace(/\.[^/.]+$/, "") + ".pdf";
+            const safeCoverLetterName = "CoverLetter_" + coverLetter.name.replace(/[^a-zA-Z0-9.\-_]/g, '_').replace(/\.[^/.]+$/, "") + ".pdf";
             attachments.push({
                 filename: safeCoverLetterName,
                 content: coverLetterBuffer,
