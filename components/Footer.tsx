@@ -35,7 +35,7 @@ const offices: OfficeInfo[] = [
             "Mile 8, Kuching-Serian Road",
             "93250 Kuching, Sarawak, Malaysia",
         ],
-        phone: "Ms. Koh Yew Ping: 013-8183876",
+        phone: "Ms. Elvina Anak Let: 013-8183876",
         extra: "E: itestchem@gmail.com",
     },
 ];

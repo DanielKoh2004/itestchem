@@ -87,7 +87,7 @@ export default function LeadershipAuthority() {
                                         Institut Kimia Malaysia · Associate Membership
                                     </p>
                                     <p className="text-xs text-borneo-green font-bold mt-1 tracking-wide">
-                                        Registration No. A2276/4256/02/2005
+                                        Registration No. A2276/4256/02/05
                                     </p>
                                 </div>
                             </div>

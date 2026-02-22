@@ -249,7 +249,7 @@ export default function ConsultancyServicesPage() {
                             transition={{ duration: 0.6 }}
                             className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-8"
                         >
-                            Ready to optimize your operations?
+                            Let Us Know Your Needs.
                         </motion.h2>
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
