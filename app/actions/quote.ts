@@ -11,24 +11,24 @@ const sanitizeCsv = (unsafe: string) => {
 };
 
 const testItemSchema = z.object({
-    sampleType: z.string().min(1),
-    testNames: z.array(z.string()).min(1),
-    otherSpecification: z.string().optional(),
-    quantity: z.number().min(1),
+    sampleType: z.string().min(1).max(100),
+    testNames: z.array(z.string().max(100)).min(1).max(50),
+    otherSpecification: z.string().max(200).optional(),
+    quantity: z.number().min(1).max(10000),
 });
 
 const sampleGroupSchema = z.object({
-    category: z.string().min(1),
-    tests: z.array(testItemSchema).min(1),
+    category: z.string().min(1).max(100),
+    tests: z.array(testItemSchema).min(1).max(20),
 });
 
 const quoteSchema = z.object({
-    fullName: z.string().min(2),
-    companyName: z.string().min(2),
-    email: z.string().email(),
-    phoneCode: z.string().min(1),
-    phoneNumber: z.string().min(5),
-    sampleGroups: z.array(sampleGroupSchema).min(1),
+    fullName: z.string().min(2).max(100),
+    companyName: z.string().min(2).max(100),
+    email: z.string().email().max(150),
+    phoneCode: z.string().min(1).max(10),
+    phoneNumber: z.string().min(5).max(30),
+    sampleGroups: z.array(sampleGroupSchema).min(1).max(10),
 });
 
 export async function submitQuoteRequest(data: any, turnstileToken: string) {

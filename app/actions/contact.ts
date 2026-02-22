@@ -6,9 +6,9 @@ import nodemailer from "nodemailer";
 const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 
 const contactSchema = z.object({
-    fullName: z.string().min(2, "Full name must be at least 2 characters"),
-    companyName: z.string().min(2, "Company name must be at least 2 characters"),
-    email: z.string().email("Please enter a valid email address"),
+    fullName: z.string().min(2, "Full name must be at least 2 characters").max(100, "Name too long"),
+    companyName: z.string().min(2, "Company name must be at least 2 characters").max(100, "Company name too long"),
+    email: z.string().email("Please enter a valid email address").max(150, "Email too long"),
     inquiryType: z.enum([
         "Request a Quote",
         "Technical Support",
