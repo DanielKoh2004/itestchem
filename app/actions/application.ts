@@ -12,6 +12,10 @@ export async function submitApplication(formData: FormData) {
     const resume = formData.get("resume") as File | null;
     const coverLetter = formData.get("coverLetter") as File | null;
 
+    if (typeof fullName !== "string" || fullName.length > 100 || fullName.length < 2) return { error: "Invalid name." };
+    if (typeof email !== "string" || email.length > 150) return { error: "Invalid email." };
+    if (typeof position !== "string" || position.length > 100) return { error: "Invalid position." };
+
     if (!turnstileToken) {
         return { error: "CAPTCHA token missing." };
     }
@@ -85,10 +89,14 @@ export async function submitApplication(formData: FormData) {
             },
         });
 
+        const safePosition = position.replace(/[\r\n]/g, '');
+        const safeFullName = fullName.replace(/[\r\n]/g, '');
+
         const mailOptions = {
             from: process.env.SMTP_EMAIL,
             to: process.env.RECEIVER_EMAIL,
-            subject: `[Job Application] ${position} - ${fullName}`,
+            subject: `[Job Application] ${safePosition} - ${safeFullName}`,
+            replyTo: email,
             html: `
                 <h2>New Job Application Received</h2>
                 <table style="border-collapse: collapse; width: 100%; max-width: 600px;">

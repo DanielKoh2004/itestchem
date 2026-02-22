@@ -152,10 +152,12 @@ export async function submitQuoteRequest(data: any, turnstileToken: string) {
         const csvBuffer = Buffer.from(csvContent, "utf-8");
 
         // 7. Send Email configuration
+        const safeCompanyName = parsedData.companyName.replace(/[\r\n]/g, '');
+
         await transporter.sendMail({
             from: `"iTestchem Submissions" <${process.env.SMTP_EMAIL}>`,
             to: process.env.RECEIVER_EMAIL, // Commercial staff email address
-            subject: `[Quote Request] - ${parsedData.companyName.toUpperCase()}`,
+            subject: `[Quote Request] - ${safeCompanyName.toUpperCase()}`,
             html: htmlContent,
             replyTo: parsedData.email,
             attachments: [

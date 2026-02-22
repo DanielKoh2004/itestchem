@@ -62,10 +62,13 @@ export async function submitContactForm(payload: z.infer<typeof contactSchema>, 
             },
         });
 
+        const safeCompanyName = data.companyName.replace(/[\r\n]/g, '');
+
         const mailOptions = {
             from: process.env.SMTP_EMAIL,
             to: process.env.RECEIVER_EMAIL,
-            subject: `[Web Portal] ${data.inquiryType} from ${data.companyName}`,
+            subject: `[Web Portal] ${data.inquiryType} from ${safeCompanyName}`,
+            replyTo: data.email,
             html: `
                 <h2>New Contact Inquiry</h2>
                 <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
