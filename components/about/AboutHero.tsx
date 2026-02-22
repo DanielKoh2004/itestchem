@@ -99,8 +99,6 @@ export default function AboutHero() {
                     <motion.div variants={fadeUp} className="flex flex-wrap gap-4 mt-10">
                         <StatBadge icon={Calendar} value="Since 2013" label="Established" href="#leadership" />
                         <StatBadge icon={Shield} value="ISO 17025" label="Accredited" href="#accreditation" />
-
-                        <StatBadge icon={FlaskConical} value="4 Scopes" label="Analytical" href="#quality" />
                     </motion.div>
                 </motion.div>
 

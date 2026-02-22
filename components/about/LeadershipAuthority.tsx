@@ -82,10 +82,9 @@ export default function LeadershipAuthority() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-slate-900 mb-1">
-                                        Registered Chemist — MIC
-                                    </h3>
+                                        Registered Chemist — IKM                                    </h3>
                                     <p className="text-xs text-slate-500 font-semibold uppercase tracking-wider">
-                                        Malaysian Institute of Chemistry · Associate Membership
+                                        Institut Kimia Malaysia · Associate Membership
                                     </p>
                                     <p className="text-xs text-borneo-green font-bold mt-1 tracking-wide">
                                         Registration No. A2276/4256/02/2005
@@ -96,13 +95,13 @@ export default function LeadershipAuthority() {
                             {/* Body text */}
                             <p className="text-sm text-slate-600 leading-relaxed mb-6">
                                 The laboratory is managed by a registered Chemist holding
-                                Associate Membership with the Malaysian Institute of Chemistry
-                                (MIC), with over{" "}
+                                Associate Membership with the Institut Kimia Malaysia
+                                (IKM), with over{" "}
                                 <strong className="text-slate-900">
                                     20 years of dedicated analytical experience
                                 </strong>{" "}
-                                spanning agricultural commodities, environmental monitoring,
-                                food safety, and industrial chemistry. This depth of expertise
+                                spanning agricultural commodities, environmental,
+                                food, and industrial chemistry. This depth of expertise
                                 ensures that all analytical procedures adhere to the highest
                                 standards of scientific rigour, regulatory compliance, and
                                 data integrity.
@@ -117,7 +116,7 @@ export default function LeadershipAuthority() {
                                 />
                                 <ExpertiseBadge
                                     icon={GraduationCap}
-                                    title="MIC Registered"
+                                    title="IKM Registered"
                                     subtitle="Professional Chemist"
                                 />
                                 <ExpertiseBadge

@@ -153,7 +153,7 @@ export default function AccreditationBanner() {
                                         accredited under the Standard Malaysia Laboratory
                                         Accreditation Scheme (SAMM)
                                     </strong>{" "}
-                                    for{" "}
+                                    in compliance with{" "}
                                     <strong className="text-slate-900">
                                         MS ISO/IEC 17025
                                     </strong>{" "}

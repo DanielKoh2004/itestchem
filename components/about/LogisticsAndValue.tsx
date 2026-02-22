@@ -22,7 +22,7 @@ const stagger = {
 interface LocationDetailProps {
     icon: LucideIcon;
     label: string;
-    text: string;
+    text: React.ReactNode;
 }
 
 function LocationDetail({ icon: Icon, label, text }: LocationDetailProps) {
@@ -33,7 +33,7 @@ function LocationDetail({ icon: Icon, label, text }: LocationDetailProps) {
                 <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-0.5">
                     {label}
                 </p>
-                <p className="text-xs text-slate-300">{text}</p>
+                <div className="text-xs text-slate-300 leading-relaxed">{text}</div>
             </div>
         </div>
     );
@@ -68,7 +68,12 @@ export default function LogisticsAndValue() {
                             <LocationDetail
                                 icon={Clock}
                                 label="Operating Hours"
-                                text="Monday – Friday, 8:00 AM – 5:00 PM"
+                                text={
+                                    <>
+                                        Monday – Friday, 8:00 AM – 5:00 PM <br />
+                                        Saturday, 8:00 AM – 12:00 PM
+                                    </>
+                                }
                             />
                         </div>
                     </motion.div>

@@ -160,7 +160,7 @@ export async function submitQuoteRequest(data: any, turnstileToken: string) {
             replyTo: parsedData.email,
             attachments: [
                 {
-                    filename: `${parsedData.companyName.replace(/\s+/g, '_')}_QuoteData.csv`,
+                    filename: `${parsedData.companyName.replace(/[^a-zA-Z0-9]/g, '_')}_QuoteData.csv`,
                     content: csvBuffer,
                     contentType: "text/csv",
                 },

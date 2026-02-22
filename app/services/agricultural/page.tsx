@@ -100,7 +100,7 @@ export default function AgriculturalPage() {
                         </span>
                     </div>
                     <h1 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
-                        Agricultural &amp; Soil Analysis
+                        Agricultural Analysis
                     </h1>
                     <p className="text-sm text-slate-400 mt-3 max-w-2xl leading-relaxed">
                         Comprehensive testing of fertilizer, plant tissue and soil
