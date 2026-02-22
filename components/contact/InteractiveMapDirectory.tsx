@@ -18,10 +18,10 @@ const slideInRight = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease, delay: 0.15 } },
 };
 
-const mapCenter = { lat: 1.553, lng: 110.359 };
+const mapCenter = { lat: 1.49465, lng: 110.40381 };
 
 const markers = [
-    { position: { lat: 1.553, lng: 110.359 }, title: "iTestchem Laboratory Sdn Bhd" },
+    { position: { lat: 1.49465, lng: 110.40381 }, title: "iTestchem Laboratory Sdn Bhd" },
 ];
 
 export default function InteractiveMapDirectory() {
