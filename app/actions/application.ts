@@ -2,6 +2,8 @@
 
 import nodemailer from "nodemailer";
 
+const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+
 export async function submitApplication(formData: FormData) {
     const fullName = formData.get("fullName") as string;
     const email = formData.get("email") as string;
@@ -46,9 +48,10 @@ export async function submitApplication(formData: FormData) {
         // Buffer Conversion
         const resumeBuffer = Buffer.from(await resume.arrayBuffer());
 
+        const safeResumeName = resume.name.replace(/[^a-zA-Z0-9.\-_]/g, '_').replace(/\.[^/.]+$/, "") + ".pdf";
         const attachments = [
             {
-                filename: resume.name,
+                filename: safeResumeName,
                 content: resumeBuffer,
                 contentType: "application/pdf"
             }
@@ -63,8 +66,9 @@ export async function submitApplication(formData: FormData) {
                 return { error: "Cover letter file size exceeds the 5MB limit." };
             }
             const coverLetterBuffer = Buffer.from(await coverLetter.arrayBuffer());
+            const safeCoverLetterName = coverLetter.name.replace(/[^a-zA-Z0-9.\-_]/g, '_').replace(/\.[^/.]+$/, "") + ".pdf";
             attachments.push({
-                filename: coverLetter.name,
+                filename: safeCoverLetterName,
                 content: coverLetterBuffer,
                 contentType: "application/pdf"
             });
@@ -90,15 +94,15 @@ export async function submitApplication(formData: FormData) {
                 <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Full Name</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${fullName}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(fullName)}</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Email</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${email}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(email)}</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Position Applied</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${position}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(position)}</td>
                     </tr>
                 </table>
             `,

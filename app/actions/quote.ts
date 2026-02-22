@@ -1,7 +1,14 @@
 "use server";
 
-import nodemailer from "nodemailer";
 import { z } from "zod";
+import nodemailer from "nodemailer";
+
+const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+const sanitizeCsv = (unsafe: string) => {
+    let sanitized = unsafe.replace(/"/g, '""');
+    if (/^[=+\-@\t\r]/.test(sanitized)) sanitized = "'" + sanitized;
+    return sanitized;
+};
 
 const testItemSchema = z.object({
     sampleType: z.string().min(1),
@@ -88,9 +95,9 @@ export async function submitQuoteRequest(data: any, turnstileToken: string) {
             .map(
                 (test) => `
                 <tr>
-                    <td style="padding: 10px; border: 1px solid #1E293B;">${test.category}</td>
-                    <td style="padding: 10px; border: 1px solid #1E293B;">${test.sampleType}</td>
-                    <td style="padding: 10px; border: 1px solid #1E293B;"><strong>${test.testName}</strong></td>
+                    <td style="padding: 10px; border: 1px solid #1E293B;">${escapeHtml(test.category)}</td>
+                    <td style="padding: 10px; border: 1px solid #1E293B;">${escapeHtml(test.sampleType)}</td>
+                    <td style="padding: 10px; border: 1px solid #1E293B;"><strong>${escapeHtml(test.testName)}</strong></td>
                     <td style="padding: 10px; border: 1px solid #1E293B; text-align: center;">${test.quantity}</td>
                     <td style="padding: 10px; border: 1px solid #1E293B; text-align: center;"></td>
                     <td style="padding: 10px; border: 1px solid #1E293B; text-align: center;"></td>
@@ -106,10 +113,10 @@ export async function submitQuoteRequest(data: any, turnstileToken: string) {
                 
                 <p><strong>Client Details:</strong></p>
                 <ul style="list-style-type: none; padding-left: 0;">
-                    <li><strong>Name:</strong> ${parsedData.fullName}</li>
-                    <li><strong>Company:</strong> ${parsedData.companyName}</li>
-                    <li><strong>Email:</strong> ${parsedData.email}</li>
-                    <li><strong>Phone Number:</strong> ${parsedData.phoneCode} ${parsedData.phoneNumber}</li>
+                    <li><strong>Name:</strong> ${escapeHtml(parsedData.fullName)}</li>
+                    <li><strong>Company:</strong> ${escapeHtml(parsedData.companyName)}</li>
+                    <li><strong>Email:</strong> ${escapeHtml(parsedData.email)}</li>
+                    <li><strong>Phone Number:</strong> ${escapeHtml(parsedData.phoneCode)} ${escapeHtml(parsedData.phoneNumber)}</li>
                 </ul>
 
                 <h3 style="color: #0d382d; margin-top: 25px;">Requested Analytical Parameters:</h3>
@@ -139,7 +146,7 @@ export async function submitQuoteRequest(data: any, turnstileToken: string) {
         // 6. Generate CSV attachment
         const csvHeader = "Category,Sample Type,Parameter / Test Name,Quantity,Unit Price (RM),Total Price (RM)\n";
         const csvRows = flatTests
-            .map((test) => `"${test.category}","${test.sampleType}","${test.testName}","${test.quantity}","",""`)
+            .map((test) => `"${sanitizeCsv(test.category)}","${sanitizeCsv(test.sampleType)}","${sanitizeCsv(test.testName)}","${test.quantity}","",""`)
             .join("\n");
         const csvContent = csvHeader + csvRows;
         const csvBuffer = Buffer.from(csvContent, "utf-8");

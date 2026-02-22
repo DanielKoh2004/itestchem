@@ -3,6 +3,8 @@
 import * as z from "zod";
 import nodemailer from "nodemailer";
 
+const escapeHtml = (unsafe: string) => unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+
 const contactSchema = z.object({
     fullName: z.string().min(2, "Full name must be at least 2 characters"),
     companyName: z.string().min(2, "Company name must be at least 2 characters"),
@@ -12,7 +14,7 @@ const contactSchema = z.object({
         "Technical Support",
         "Sample Tracking",
         "General Inquiry",
-    ], { error: "Please select an inquiry type" }),
+    ], { required_error: "Please select an inquiry type", invalid_type_error: "Invalid inquiry type" } as any),
     message: z
         .string()
         .min(10, "Message must be at least 10 characters")
@@ -69,23 +71,23 @@ export async function submitContactForm(payload: z.infer<typeof contactSchema>, 
                 <table style="border-collapse: collapse; width: 100%; max-width: 600px;">
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Full Name</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${data.fullName}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(data.fullName)}</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Company Name</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${data.companyName}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(data.companyName)}</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Work Email</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${data.email}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(data.email)}</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Inquiry Type</td>
-                        <td style="padding: 10px; border: 1px solid #ddd;">${data.inquiryType}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${escapeHtml(data.inquiryType)}</td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Message</td>
-                        <td style="padding: 10px; border: 1px solid #ddd; white-space: pre-wrap;">${data.message}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd; white-space: pre-wrap;">${escapeHtml(data.message)}</td>
                     </tr>
                 </table>
             `,
