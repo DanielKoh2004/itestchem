@@ -5,7 +5,7 @@ import type { Easing } from "framer-motion";
 import { FlaskConical, Calendar, Shield, Award } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import Link from "next/link";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import Image from "next/image";
 
 const ease: Easing = [0.33, 1, 0.68, 1];
 const viewport = { once: true, margin: "-100px" as const };
@@ -104,16 +104,20 @@ export default function AboutHero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Right — Image placeholder (scales in) */}
+                {/* Right — Image (scales in) */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={viewport}
                     variants={scaleIn}
+                    className="relative w-full h-[400px]"
                 >
-                    <ImagePlaceholder
-                        label="Main Laboratory Facility"
-                        className="w-full h-[500px] rounded-sm shadow-2xl"
+                    <Image
+                        src="/img/main lab facility.png"
+                        alt="Main Laboratory Facility"
+                        fill
+                        className="object-cover rounded-sm shadow-2xl"
+                        priority
                     />
                 </motion.div>
             </div>

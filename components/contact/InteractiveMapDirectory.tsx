@@ -24,66 +24,6 @@ const markers = [
     { position: { lat: 1.553, lng: 110.359 }, title: "iTestchem Laboratory Sdn Bhd" },
 ];
 
-const darkModeStyles: google.maps.MapTypeStyle[] = [
-    { elementType: "geometry", stylers: [{ color: "#0f172a" }] },
-    { elementType: "labels.text.stroke", stylers: [{ color: "#0f172a" }] },
-    { elementType: "labels.text.fill", stylers: [{ color: "#64748b" }] },
-    {
-        featureType: "administrative.locality",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#94a3b8" }],
-    },
-    {
-        featureType: "poi",
-        stylers: [{ visibility: "off" }],
-    },
-    {
-        featureType: "poi.park",
-        elementType: "geometry",
-        stylers: [{ color: "#0a2e1f" }],
-    },
-    {
-        featureType: "road",
-        elementType: "geometry",
-        stylers: [{ color: "#1e293b" }],
-    },
-    {
-        featureType: "road",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#334155" }],
-    },
-    {
-        featureType: "road.highway",
-        elementType: "geometry",
-        stylers: [{ color: "#1e3a2f" }],
-    },
-    {
-        featureType: "road.highway",
-        elementType: "geometry.stroke",
-        stylers: [{ color: "#064e3b" }],
-    },
-    {
-        featureType: "road.highway",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#6ee7b7" }],
-    },
-    {
-        featureType: "transit",
-        elementType: "geometry",
-        stylers: [{ color: "#1e293b" }],
-    },
-    {
-        featureType: "water",
-        elementType: "geometry",
-        stylers: [{ color: "#0c1929" }],
-    },
-    {
-        featureType: "water",
-        elementType: "labels.text.fill",
-        stylers: [{ color: "#334155" }],
-    },
-];
-
 export default function InteractiveMapDirectory() {
     const { isLoaded } = useJsApiLoader({
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ?? "",
@@ -93,14 +33,12 @@ export default function InteractiveMapDirectory() {
         () => ({
             disableDefaultUI: true,
             zoomControl: true,
-            styles: darkModeStyles,
-            backgroundColor: "#0f172a",
         }),
         []
     );
 
     return (
-        <div className="relative w-full h-full min-h-[800px] bg-slate-navy">
+        <div className="relative w-full h-full min-h-[800px] bg-slate-50">
             {/* Google Map */}
             {isLoaded ? (
                 <GoogleMap
@@ -117,7 +55,7 @@ export default function InteractiveMapDirectory() {
                 <div className="w-full h-full flex items-center justify-center">
                     <div className="flex flex-col items-center gap-3">
                         <div className="w-8 h-8 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin" />
-                        <span className="text-xs text-slate-400 uppercase tracking-wider font-bold">
+                        <span className="text-xs text-slate-600 uppercase tracking-wider font-bold">
                             Loading Map...
                         </span>
                     </div>
@@ -132,7 +70,7 @@ export default function InteractiveMapDirectory() {
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={slideInLeft}
-                    className="pointer-events-auto bg-slate-900/85 backdrop-blur-md text-white border border-slate-700 p-5 max-w-sm shadow-2xl"
+                    className="pointer-events-auto bg-white/95 backdrop-blur-md text-slate-900 border border-slate-200 p-5 max-w-sm shadow-2xl"
                 >
                     <div className="flex items-center gap-2 mb-3">
                         <div className="w-8 h-8 bg-borneo-green flex items-center justify-center">
@@ -140,29 +78,30 @@ export default function InteractiveMapDirectory() {
                         </div>
                         <div>
                             <h3 className="text-sm font-bold">iTestchem Laboratory</h3>
-                            <p className="text-[10px] text-emerald-400 uppercase tracking-wider font-bold">
+                            <p className="text-[10px] text-borneo-green uppercase tracking-wider font-bold">
                                 Headquarters
                             </p>
                         </div>
                     </div>
-                    <address className="not-italic text-xs text-slate-300 leading-relaxed mb-3 border-l-2 border-borneo-green pl-3">
+                    <address className="not-italic text-xs text-slate-600 leading-relaxed mb-3 border-l-2 border-borneo-green pl-3">
                         1st Floor, Sublot 6<br />
                         Contempo Commercial Centre<br />
                         Mile 8, Kuching-Serian Road<br />
                         93250 Kuching, Sarawak, Malaysia
                     </address>
                     <div className="space-y-1.5">
-                        <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                            <Phone className="w-3.5 h-3.5 text-emerald-400" />
-                            <span>Ms. Koh Yew Ping: 013-8183876</span>
+                        <div className="flex items-center gap-2 text-[11px] text-slate-600">
+                            <Phone className="w-3.5 h-3.5 text-borneo-green" />
+                            <span>Ms. Elvina Anak Let: 013-8183876</span>
                         </div>
-                        <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                            <Mail className="w-3.5 h-3.5 text-emerald-400" />
+                        <div className="flex items-center gap-2 text-[11px] text-slate-600">
+                            <Mail className="w-3.5 h-3.5 text-borneo-green" />
                             <span>itestchem@gmail.com</span>
                         </div>
-                        <div className="flex items-center gap-2 text-[11px] text-slate-400">
-                            <Clock className="w-3.5 h-3.5 text-emerald-400" />
+                        <div className="flex items-center gap-2 text-[11px] text-slate-600">
+                            <Clock className="w-3.5 h-3.5 text-borneo-green" />
                             <span>Mon – Fri, 8:00 AM – 5:00 PM</span>
+                            <span>Sat, 8:00 AM – 12:00 PM</span>
                         </div>
                     </div>
                 </motion.div>

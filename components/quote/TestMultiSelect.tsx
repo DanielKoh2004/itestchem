@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from "react";
 import { X, Search } from "lucide-react";
 import Fuse from "fuse.js";
-import { testCatalog, TestCategory } from "@/lib/testCatalog";
 
 /* ═══════════════════════════════════════════════
    Highlight Helper
@@ -32,23 +31,26 @@ const Highlight = ({ text, query }: { text: string; query: string }) => {
     );
 };
 
+export interface TestItem {
+    name: string;
+    aliases: string;
+}
+
 interface TestMultiSelectProps {
-    category: TestCategory;
+    items: TestItem[];
     selectedTests: string[];
     onChange: (tests: string[]) => void;
+    disabled?: boolean;
     error?: string;
 }
 
-export default function TestMultiSelect({ category, selectedTests, onChange, error }: TestMultiSelectProps) {
+export default function TestMultiSelect({ items, selectedTests, onChange, disabled, error }: TestMultiSelectProps) {
     const [query, setQuery] = useState("");
     const [isOpen, setIsOpen] = useState(false);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    // Get catalog items for category
-    const catalogItems = testCatalog[category] || [];
-
     // Filter out already selected items to not show them in dropdown
-    const availableItems = catalogItems.filter(item => !selectedTests.includes(item.name));
+    const availableItems = items.filter(item => !selectedTests.includes(item.name));
 
     // Search setup
     const fuse = new Fuse(availableItems, {
@@ -78,7 +80,7 @@ export default function TestMultiSelect({ category, selectedTests, onChange, err
     const handleSelect = (testName: string) => {
         onChange([...selectedTests, testName]);
         setQuery("");
-        setIsOpen(false); // Can keep open if we want rapid selection, but closing feels cleaner
+        setIsOpen(false);
     };
 
     const handleRemove = (testName: string) => {
@@ -97,6 +99,7 @@ export default function TestMultiSelect({ category, selectedTests, onChange, err
                                 type="button"
                                 onClick={() => handleRemove(test)}
                                 className="text-emerald-600 hover:text-red-600 hover:bg-red-50 rounded-sm p-0.5 transition-colors cursor-pointer"
+                                disabled={disabled}
                             >
                                 <X className="w-3.5 h-3.5" />
                             </button>
@@ -115,19 +118,22 @@ export default function TestMultiSelect({ category, selectedTests, onChange, err
                             setQuery(e.target.value);
                             setIsOpen(true);
                         }}
-                        onFocus={() => setIsOpen(true)}
-                        className={`w-full pl-4 pr-10 py-3 bg-slate-50 border text-sm focus:outline-none focus:ring-2 focus:ring-borneo-green focus:border-borneo-green transition-colors ${error ? 'border-red-300' : 'border-slate-200'}`}
-                        placeholder="Search & select multiple parameters (e.g. BOD, Nitrogen...)"
+                        onFocus={() => {
+                            if (!disabled) setIsOpen(true);
+                        }}
+                        disabled={disabled}
+                        className={`w-full pl-4 pr-10 py-3 bg-white border text-sm focus:outline-none focus:ring-2 focus:ring-borneo-green focus:border-borneo-green transition-colors disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed ${error ? 'border-red-300' : 'border-slate-200'}`}
+                        placeholder={disabled ? "Select a Sample Type first" : "Search & select multiple parameters..."}
                     />
-                    <div className="absolute right-0 top-0 h-full px-3 flex items-center justify-center text-slate-400 pointer-events-none">
+                    <div className={`absolute right-0 top-0 h-full px-3 flex items-center justify-center pointer-events-none ${disabled ? 'text-slate-300' : 'text-slate-400'}`}>
                         <Search className="w-4 h-4" />
                     </div>
                 </div>
 
-                {error && <p className="text-xs text-red-500 mt-1">{error}</p>}
+                {error && <p className="text-[10px] text-red-500 mt-1">{error}</p>}
 
                 {/* Dropdown Menu */}
-                {isOpen && results.length > 0 && (
+                {isOpen && !disabled && results.length > 0 && (
                     <div className="absolute z-50 top-full mt-1 w-full bg-white border border-slate-200 shadow-xl rounded-sm max-h-60 overflow-y-auto animate-fade-in-up">
                         <ul className="py-1">
                             {results.map(({ item }) => (
@@ -152,7 +158,7 @@ export default function TestMultiSelect({ category, selectedTests, onChange, err
                     </div>
                 )}
 
-                {isOpen && query.trim() !== "" && results.length === 0 && (
+                {isOpen && !disabled && query.trim() !== "" && results.length === 0 && (
                     <div className="absolute z-50 top-full mt-1 w-full bg-white border border-slate-200 shadow-xl rounded-sm p-4 text-center">
                         <p className="text-xs text-slate-500">No matching parameters found.</p>
                     </div>

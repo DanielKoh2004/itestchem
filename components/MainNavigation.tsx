@@ -22,7 +22,7 @@ const navItems: NavItem[] = [
             { label: "Agricultural Analysis", href: "/services/agricultural" },
             { label: "Environmental Analysis", href: "/services/environmental" },
             { label: "Food & Feed Analysis", href: "/services/food" },
-            { label: "Consultation Services", href: "#" },
+            { label: "Consultation Services", href: "/services/consultancy" },
         ],
     },
     { label: "Contact", href: "/contact" },

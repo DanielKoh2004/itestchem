@@ -9,7 +9,6 @@ import { Turnstile } from "@marsidev/react-turnstile";
 import { submitContactForm } from "@/app/actions/contact";
 
 const inquiryOptions = [
-    "Request a Quote",
     "Technical Support",
     "Sample Tracking",
     "General Inquiry",

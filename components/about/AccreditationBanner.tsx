@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
 import { ShieldCheck, CheckCircle2, ClipboardCheck, FlaskConical } from "lucide-react";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import Image from "next/image";
 
 const ease: Easing = [0.33, 1, 0.68, 1];
 const viewport = { once: true, margin: "-100px" as const };
@@ -108,10 +108,14 @@ export default function AccreditationBanner() {
                     <div className="grid grid-cols-1 lg:grid-cols-12">
                         {/* Left — SAMM badge area */}
                         <div className="lg:col-span-4 bg-slate-50 border-b lg:border-b-0 lg:border-r border-slate-200 flex flex-col items-center justify-center p-10 gap-6">
-                            <ImagePlaceholder
-                                label="SAMM Logo"
-                                className="w-32 h-32 rounded-sm"
-                            />
+                            <div className="relative w-full max-w-[200px] aspect-[1/1.414] shadow-md border border-slate-200">
+                                <Image
+                                    src="/img/SAMM Cert 001_page-0001.jpg"
+                                    alt="SAMM Certificate"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
                             <div className="text-center">
                                 <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] font-bold">
                                     Skim Akreditasi Makmal Malaysia

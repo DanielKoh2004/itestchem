@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import type { Easing } from "framer-motion";
 import { MapPin, Clock } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import Image from "next/image";
 
 const ease: Easing = [0.33, 1, 0.68, 1];
 const viewport = { once: true, margin: "-100px" as const };
@@ -74,10 +74,12 @@ export default function LogisticsAndValue() {
                     </motion.div>
 
                     {/* Right - Facility Image */}
-                    <motion.div variants={fadeUp} className="h-full min-h-[400px]">
-                        <ImagePlaceholder
-                            label="Kuching Laboratory Facility"
-                            className="w-full h-full rounded-sm"
+                    <motion.div variants={fadeUp} className="relative h-full min-h-[350px] w-full">
+                        <Image
+                            src="/img/kuching lab.jpg"
+                            alt="Kuching Laboratory Facility"
+                            fill
+                            className="object-contain rounded-sm"
                         />
                     </motion.div>
                 </div>

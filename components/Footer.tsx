@@ -47,7 +47,7 @@ const sectorLinks: FooterLinkGroup = {
         { label: "Agriculture & Plantations", href: "#" },
         { label: "Environmental Monitoring", href: "#" },
         { label: "Food & Beverage", href: "#" },
-        { label: "Consultation", href: "#" },
+        { label: "Consultation", href: "/services/consultancy" },
     ],
 };
 

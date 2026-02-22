@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import Image from "next/image";
 
 /* ═══════════════════════════════════════════════
    Shared animation presets
@@ -103,15 +104,19 @@ function AnimatedHero() {
                     </motion.div>
                 </motion.div>
 
-                {/* Right — Image placeholder with scale-down */}
+                {/* Right — Image with scale-down */}
                 <motion.div
                     initial="hidden"
                     animate="visible"
                     variants={scaleDown}
+                    className="relative w-full h-[400px] lg:h-[500px]"
                 >
-                    <ImagePlaceholder
-                        label="Main Laboratory Facility"
-                        className="w-full h-[400px] rounded-sm"
+                    <Image
+                        src="/img/main lab facility.png"
+                        alt="Main Laboratory Facility"
+                        fill
+                        className="object-cover rounded-sm shadow-2xl"
+                        priority
                     />
                 </motion.div>
             </div>
@@ -295,27 +300,20 @@ function StaggeredAccreditationBanner() {
                         variants={fadeUp}
                         className="lg:col-span-4 flex justify-center lg:justify-start"
                     >
-                        <div className="relative">
-                            <div className="w-48 h-48 border-4 border-emerald-500/30 flex items-center justify-center">
-                                <div className="w-36 h-36 bg-emerald-900/50 border-2 border-emerald-400/40 flex flex-col items-center justify-center text-center">
-                                    <ShieldCheck className="w-10 h-10 text-emerald-300 mb-2" />
-                                    <span className="text-2xl font-black leading-none">
-                                        ISO/IEC
-                                    </span>
-                                    <span className="text-3xl font-black text-emerald-400 leading-none">
-                                        17025
-                                    </span>
-                                    <span className="text-[10px] font-bold text-emerald-300 uppercase tracking-[0.2em] mt-1">
-                                        : 2017
-                                    </span>
-                                </div>
+                        {/* Left — SAMM Certificate */}
+                        <motion.div
+                            variants={fadeUp}
+                            className="lg:col-span-4 flex justify-center lg:justify-start"
+                        >
+                            <div className="relative w-full max-w-[320px] aspect-[1/1.414] shadow-2xl border-2 border-emerald-500/30 bg-white p-1">
+                                <Image
+                                    src="/img/SAMM Cert 001_page-0001.jpg"
+                                    alt="SAMM Certificate Accreditation"
+                                    fill
+                                    className="object-contain"
+                                />
                             </div>
-                            {/* Corner accents */}
-                            <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-emerald-400" />
-                            <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-emerald-400" />
-                            <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-emerald-400" />
-                            <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-emerald-400" />
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* Right — Text */}
@@ -436,10 +434,12 @@ function LogisticsAndValue() {
                             </div>
                         </motion.div>
 
-                        <motion.div variants={fadeUp} className="h-full min-h-[400px]">
-                            <ImagePlaceholder
-                                label="Kuching / Kota Samarahan Facility"
-                                className="w-full h-full rounded-sm"
+                        <motion.div variants={fadeUp} className="relative h-full min-h-[400px] w-full">
+                            <Image
+                                src="/img/kuching lab.jpg"
+                                alt="Kuching / Kota Samarahan Facility"
+                                fill
+                                className="object-cover rounded-sm shadow-xl"
                             />
                         </motion.div>
                     </div>

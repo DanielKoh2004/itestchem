@@ -54,7 +54,7 @@ const services: ServiceCardData[] = [
     },
     {
         icon: Utensils,
-        title: "Food & Feed",
+        title: "Food & Feed Analysis",
         description:
             "Nutritional labeling, animal feeds, compost, and bunch ash analysis for export quality.",
         bullets: [
